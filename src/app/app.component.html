@@ -1,0 +1,33 @@
+<nav class="navbar navbar-dark navbar-expand-lg bg-secondary">
+    <span class="navbar-brand logo" routerLink="/"></span>
+    <button
+        class="navbar-toggler navbar-toggler-right"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        (click)="isActive = !isActive"
+    >
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown" [ngClass]="{ show: isActive }">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link text-white" routerLink="/blocks" routerLinkActive="active">Blocks</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" routerLink="/transactions" routerLinkActive="active">Transactions</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" routerLink="/analytics" routerLinkActive="active">Analytics</a>
+            </li>
+        </ul>
+        <form class="form-inline mt-2 mt-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search Txn Hash / Block" aria-label="Search" />
+            <button class="btn btn-outline-primary mt-1 mt-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<router-outlet></router-outlet>

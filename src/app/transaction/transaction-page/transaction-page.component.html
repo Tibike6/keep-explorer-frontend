@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm my-3">
+                <div class="card-header d-flex justify-content-between flex-wrap">
+                    <div class="h4 d-flex justify-content-center align-items-center m-0">
+                        <app-transaction-icon class="mr-1"></app-transaction-icon>
+                        <span>Transactions</span>
+                    </div>
+                    <div class="btn-group">
+                        <label class="btn btn-primary m-0" [(ngModel)]="checkModel.keep" btnCheckbox role="button" (click)="load()">KEEP</label>
+                        <label class="btn btn-primary m-0" [(ngModel)]="checkModel.tbtc" btnCheckbox role="button" (click)="load()">TBTC</label>
+                    </div>
+                </div>
+                <ng-container *ngIf="transfers$ | async as transfers; else loading">
+                    <div class="card-body p-0">
+                        <ul class="list-group">
+                            <li class="list-group-item border-0 pb-0" *ngFor="let transfer of transfers; let i = index">
+                                <app-transaction-item [transfer]="transfer"></app-transaction-item>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-12 col-12 mb-2 d-flex justify-content-center align-items-center">
+                        <button type="button" class="btn btn-primary btn-sm text-white" (click)="fetchMore()">Display more...</button>
+                    </div>
+                </ng-container>
+                <ng-template #loading>
+                    <app-loading></app-loading>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>

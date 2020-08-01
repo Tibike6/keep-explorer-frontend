@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <!-- <div class="col-xs-12 col-12 mt-4 d-flex justify-content-center align-items-center">
+                <pagination
+                    class="m-0"
+                    [totalItems]="totalItems"
+                    [maxSize]="5"
+                    [(ngModel)]="currentPage"
+                    (pageChanged)="pageChanged($event)"
+                ></pagination>
+            </div> -->
+            <div class="card shadow-sm my-3">
+                <div class="card-header d-flex justify-content-between flex-wrap">
+                    <div class="h4 d-flex align-items-center m-0">
+                        <app-block-icon class="mr-1"></app-block-icon>
+                        <span>Blocks</span>
+                    </div>
+                </div>
+                <ng-container *ngIf="blocks$ | async as blocks; else loading">
+                    <div class="card-body p-0">
+                        <ul class="list-group">
+                            <li class="list-group-item border-0 pb-0" *ngFor="let block of blocks; let i = index">
+                                <app-block-item [block]="block"></app-block-item>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-12 col-12 mb-2 d-flex justify-content-center align-items-center">
+                        <button type="button" class="btn btn-primary btn-sm text-white" (click)="fetchMore()">Display more...</button>
+                    </div>
+                </ng-container>
+                <ng-template #loading>
+                    <app-loading></app-loading>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>

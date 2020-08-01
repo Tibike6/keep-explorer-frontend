@@ -1,0 +1,34 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Program",
+      "program": "${workspaceFolder}/server/src/index.ts",
+      "outFiles": [
+        "${workspaceFolder}/server/dist/**/*.js"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      }
+    },
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "Attach to Docker",
+      "preLaunchTask": "tsc-watch",
+      "protocol": "auto",
+      "port": 5858,
+      "restart": true,
+      "localRoot": "${workspaceFolder}/server",
+      "remoteRoot": "/usr/src/app/server",
+      "outFiles": [
+        "${workspaceFolder}/server/dist/**/*.js"
+      ],
+      "skipFiles": [
+        "<node_internals>/**/*.js",
+      ]
+    }
+  ]
+}

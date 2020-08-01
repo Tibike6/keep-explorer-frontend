@@ -1,0 +1,24 @@
+:host {
+    display: block;
+
+    label:not(.active) {
+        opacity: 0.5;
+    }
+
+    .list-group-item:last-child {
+      margin-bottom: 12px;
+    }
+
+    ::ng-deep .page-item.active .page-link {
+        background-color: #48dbb4;
+        border-color: #48dbb4;
+    }
+
+    ::ng-deep .page-link {
+        color: #48dbb4;
+    }
+
+    ::ng-deep .page-link:hover {
+        color: #2ca585;
+    }
+}

@@ -1,0 +1,7 @@
+:host {
+  display: block;
+
+  label:not(.active) {
+    opacity: 0.5;
+  }
+}

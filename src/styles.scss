@@ -1,0 +1,13 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
+$keep-primary: #48dbb4;
+$keep-secondary: #212121;
+$body-bg: #e6e6e6;
+
+$theme-colors: (
+  primary: $keep-primary,
+  secondary: $keep-secondary
+);
+
+@import "~bootstrap";
