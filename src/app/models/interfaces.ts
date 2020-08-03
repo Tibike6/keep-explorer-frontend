@@ -1,10 +1,17 @@
 export interface ITransfer {
-    id: string; // Transaction hash concatenated with event log index
+    id: string; // transaction hash concatenated with event log index
     value: string;
     from: string;
     to: string;
     timestamp: number;
     transaction: ITransaction;
+}
+
+export interface ITransferAggregation {
+    id: string; // day as string format: YYYY-MM
+    timestamp: number;
+    count: number;
+    sum: number;
 }
 
 export interface ITransaction {

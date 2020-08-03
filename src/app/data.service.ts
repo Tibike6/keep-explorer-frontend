@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Apollo, QueryRef } from 'apollo-angular';
 import { map } from 'rxjs/operators';
-import { ITransfer } from './models/interfaces';
+import { ITransfer, ITransferAggregation } from './models/interfaces';
 import gql from 'graphql-tag';
 
 const TRANSFERS_QUERY = gql`
@@ -46,6 +46,28 @@ const BLOCKS_QUERY = gql`
     }
 `;
 
+const MONTHLY_TRANSFERS_QUERY = gql`
+    query montlyTransferAggregations($timestampFrom: Int) {
+        montlyTransferAggregations(where: { timestamp_gt: $timestampFrom }) {
+            id
+            count
+            sum
+            timestamp
+        }
+    }
+`;
+
+const DAILY_TRANSFERS_QUERY = gql`
+    query dailyTransferAggregations($timestampFrom: Int) {
+        dailyTransferAggregations(where: { timestamp_gt: $timestampFrom }) {
+            id
+            count
+            sum
+            timestamp
+        }
+    }
+`;
+
 type BlockResponse = {
     blocks: ITransfer[];
 };
@@ -76,6 +98,18 @@ export class DataService {
             variables: { pageSize, skip: pageSize * (page - 1) },
             fetchPolicy: 'network-only'
         });
+    }
+
+    public getMontlyTransfers(timestampFrom: number): Observable<ITransferAggregation[]> {
+        return this.apollo
+            .watchQuery<any>({ query: MONTHLY_TRANSFERS_QUERY, variables: { timestampFrom } })
+            .valueChanges.pipe(map((x) => x.data.montlyTransferAggregations));
+    }
+
+    public getDailyTransfers(timestampFrom: number): Observable<ITransferAggregation[]> {
+        return this.apollo
+            .watchQuery<any>({ query: DAILY_TRANSFERS_QUERY, variables: { timestampFrom } })
+            .valueChanges.pipe(map((x) => x.data.dailyTransferAggregations));
     }
 
     // getTransactions(
