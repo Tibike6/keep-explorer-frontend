@@ -26,12 +26,6 @@
             <app-transaction-icon class="mr-1"></app-transaction-icon>
             <span>Transfer Transactions</span>
           </div>
-          <div class="btn-group">
-            <label class="btn btn-primary m-0" [(ngModel)]="checkModel.keep" btnCheckbox role="button"
-              (click)="load()">KEEP</label>
-            <label class="btn btn-primary m-0" [(ngModel)]="checkModel.tbtc" btnCheckbox role="button"
-              (click)="load()">TBTC</label>
-          </div>
         </div>
         <ng-container *ngIf="transfers$ | async as transfers; else loading">
           <div class="card-body p-0">

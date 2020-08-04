@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../data.service';
 import { Observable } from 'rxjs';
 import { map, delay } from 'rxjs/operators';
-import { TokenType } from '../../models/interfaces';
 import { TransferViewModel } from 'src/app/models/transfer.viewmodel';
 import { QueryRef } from 'apollo-angular';
 import * as moment from 'moment';
@@ -17,8 +16,6 @@ export class TransactionPageComponent implements OnInit {
     public transfers$: Observable<TransferViewModel[]>;
     public transfersQuery: QueryRef<any>;
     public transferAggregation$: Observable<TransferAggregationViewModel>;
-    public TokenType = TokenType;
-    public checkModel: any = { keep: true, tbtc: true };
     public transferAnalyticsModel = 'months';
     // public totalItems = 20;
     public currentPage = 1;
@@ -34,13 +31,6 @@ export class TransactionPageComponent implements OnInit {
     }
 
     public load() {
-        let tokenType = TokenType.All;
-        if (this.checkModel.keep && !this.checkModel.tbtc) {
-            tokenType = TokenType.Keep;
-        } else if (!this.checkModel.keep && this.checkModel.tbtc) {
-            tokenType = TokenType.Tbtc;
-        }
-
         this.transfersQuery = this.dataService.getTransfersQueryRef(this.page, 10);
         this.transfers$ = this.transfersQuery.valueChanges.pipe(map((x) => x.data.transfers.map((t) => new TransferViewModel(t))));
     }

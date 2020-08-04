@@ -105,9 +105,3 @@ export interface Block {
     transactions: BlockTransaction[];
     uncles: string[];
 }
-
-export enum TokenType {
-    Keep = 'keep',
-    Tbtc = 'tbtc',
-    All = 'all'
-}
