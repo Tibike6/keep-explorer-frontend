@@ -22,6 +22,8 @@ import { TransactionIconComponent } from './shared/transaction-icon/transaction-
 import { GraphQLModule } from './graphql.module';
 import { LoadingComponent } from './shared/loading/loading.component';
 import { AnalyticsPageComponent } from './analytics/analytics-page/analytics-page.component';
+import { TbtcLogoComponent } from './shared/tbtc-logo/tbtc-logo.component';
+import { KeepLogoComponent } from './shared/keep-logo/keep-logo.component';
 
 @NgModule({
     declarations: [
@@ -37,7 +39,9 @@ import { AnalyticsPageComponent } from './analytics/analytics-page/analytics-pag
         BlockItemComponent,
         TransactionIconComponent,
         LoadingComponent,
-        AnalyticsPageComponent
+        AnalyticsPageComponent,
+        TbtcLogoComponent,
+        KeepLogoComponent
     ],
     imports: [
         BrowserModule,

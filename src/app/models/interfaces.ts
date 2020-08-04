@@ -47,6 +47,11 @@ export interface IBlock {
     transactions: ITransaction[];
 }
 
+export enum Theme {
+    KEEP = 'Keep',
+    TBTC = 'Tbtc'
+}
+
 export interface PagedResult {
     result: any[];
     totalPages: number;

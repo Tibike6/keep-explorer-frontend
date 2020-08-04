@@ -7,10 +7,19 @@ import { BlockPageComponent } from './block/block-page/block-page.component';
 import { AnalyticsPageComponent } from './analytics/analytics-page/analytics-page.component';
 
 const routes: Routes = [
-    { path: 'keep', component: HomeKeepComponent },
+    {
+        path: 'keep',
+        component: HomeKeepComponent
+    },
+    {
+        path: 'keep/transactions',
+        component: TransactionPageComponent
+    },
+    {
+        path: 'keep/blocks',
+        component: BlockPageComponent
+    },
     { path: 'tbtc', component: HomeTbtcComponent },
-    { path: 'transactions', component: TransactionPageComponent },
-    { path: 'blocks', component: BlockPageComponent },
     { path: 'analytics', component: AnalyticsPageComponent },
     { path: '', redirectTo: '/keep', pathMatch: 'full' },
     // { path: '**', component: PageNotFoundComponent },

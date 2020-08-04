@@ -4,6 +4,7 @@ import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
 const uri = 'https://api.thegraph.com/subgraphs/name/tibike6/keep';
+
 export function createApollo(httpLink: HttpLink) {
     return {
         link: httpLink.create({ uri }),

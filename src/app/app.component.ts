@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-
-export enum Theme {
-    KEEP = 'Keep',
-    TBTC = 'Tbtc'
-}
+import { Theme } from './models/interfaces';
 
 @Component({
     selector: 'app-root',
