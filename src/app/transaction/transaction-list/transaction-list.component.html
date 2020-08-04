@@ -4,7 +4,7 @@
           <app-transaction-icon class="mr-2"></app-transaction-icon>
           <span>Transactions</span>
         </div>
-        <button type="button" class="btn btn-primary btn-sm text-white" routerLink="/transactions">View All Transactions</button>
+        <button type="button" class="btn btn-primary btn-sm text-white" [routerLink]="(themeService.getCurrentTheme() === Theme.KEEP) ? '/keep/transactions' : '/tbtc/transactions'">View All Transactions</button>
     </div>
     <div class="card-body p-0">
         <ul class="list-group">

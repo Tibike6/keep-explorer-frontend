@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { TransferViewModel } from 'src/app/models/transfer.viewmodel';
+import { ThemeService } from 'src/app/services/theme.service';
+import { Theme } from 'src/app/models/interfaces';
 
 @Component({
     selector: 'app-transaction-list',
@@ -12,8 +14,9 @@ import { TransferViewModel } from 'src/app/models/transfer.viewmodel';
 })
 export class TransactionListComponent implements OnInit {
     public transfers$: Observable<TransferViewModel[]>;
+    public Theme = Theme;
 
-    constructor(public router: Router, private dataService: DataService) {}
+    constructor(public router: Router, private dataService: DataService, public themeService: ThemeService) {}
 
     ngOnInit(): void {
         this.load();

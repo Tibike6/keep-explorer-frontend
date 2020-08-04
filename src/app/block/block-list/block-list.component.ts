@@ -4,6 +4,8 @@ import { map, tap } from 'rxjs/operators';
 import { DataService } from '../../services/data.service';
 import { QueryRef } from 'apollo-angular';
 import { BlockViewModel } from '../../models/block.viewmodel';
+import { Theme } from 'src/app/models/interfaces';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
     selector: 'app-block-list',
@@ -13,8 +15,9 @@ import { BlockViewModel } from '../../models/block.viewmodel';
 export class BlockListComponent implements OnInit {
     public blocks$: Observable<BlockViewModel[]>;
     public blocksQuery: QueryRef<any>;
+    public Theme = Theme;
 
-    constructor(private dataService: DataService) {}
+    constructor(private dataService: DataService, public themeService: ThemeService) {}
 
     ngOnInit(): void {
         this.load();
