@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
-import { Label, Color } from 'ng2-charts';
+import { Router, NavigationEnd } from '@angular/router';
+
+export enum Theme {
+    KEEP = 'Keep',
+    TBTC = 'Tbtc'
+}
 
 @Component({
     selector: 'app-root',
@@ -9,6 +13,20 @@ import { Label, Color } from 'ng2-charts';
 })
 export class AppComponent implements OnInit {
     public isActive = false;
-    constructor() {}
-    ngOnInit() {}
+    public Theme = Theme;
+    public theme: Theme;
+
+    constructor(private router: Router) {}
+
+    ngOnInit() {
+        this.router.events.subscribe((event) => {
+            if (event instanceof NavigationEnd) {
+                if (event.urlAfterRedirects.includes('/tbtc')) {
+                    this.theme = Theme.TBTC;
+                } else {
+                    this.theme = Theme.KEEP;
+                }
+            }
+        });
+    }
 }

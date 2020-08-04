@@ -14,7 +14,8 @@ import { TransactionItemComponent } from './transaction/transaction-item/transac
 import { TransactionPageComponent } from './transaction/transaction-page/transaction-page.component';
 import { BlockPageComponent } from './block/block-page/block-page.component';
 import { BlockListComponent } from './block/block-list/block-list.component';
-import { HomeComponent } from './home/home.component';
+import { HomeKeepComponent } from './home-keep/home-keep.component';
+import { HomeTbtcComponent } from './home-tbtc/home-tbtc.component';
 import { BlockIconComponent } from './shared/block-icon/block-icon.component';
 import { BlockItemComponent } from './block/block-item/block-item.component';
 import { TransactionIconComponent } from './shared/transaction-icon/transaction-icon.component';
@@ -25,7 +26,8 @@ import { AnalyticsPageComponent } from './analytics/analytics-page/analytics-pag
 @NgModule({
     declarations: [
         AppComponent,
-        HomeComponent,
+        HomeKeepComponent,
+        HomeTbtcComponent,
         TransactionPageComponent,
         TransactionListComponent,
         TransactionItemComponent,

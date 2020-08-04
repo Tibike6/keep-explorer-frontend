@@ -1,0 +1,28 @@
+$tbtc-primary: #000;
+$tbtc-secondary: #fffdfc;
+$body-bg: #e6e6e6;
+$font-family-sans-serif:
+  // Safari for OS X and iOS (San Francisco)
+  -apple-system,
+  // Chrome < 56 for OS X (San Francisco)
+  "apercu-mono-regular-pro",
+  // Windows
+  "Segoe UI",
+  // Android
+  "Roboto",
+  // Basic web fallback
+  "Helvetica Neue", Arial, sans-serif,
+  // Emoji fonts
+  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+  $font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+// $body-color: rgb(192, 192, 192);
+// $card-border-color: #aaa;
+// $card-cap-bg: rgb(100, 100, 100);
+// $card-bg: rgb(56, 56, 56);
+
+$theme-colors: (
+  primary: $tbtc-primary,
+  secondary: $tbtc-secondary
+);

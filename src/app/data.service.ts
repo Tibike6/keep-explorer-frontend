@@ -111,19 +111,4 @@ export class DataService {
             .watchQuery<any>({ query: DAILY_TRANSFERS_QUERY, variables: { timestampFrom } })
             .valueChanges.pipe(map((x) => x.data.dailyTransferAggregations));
     }
-
-    // getTransactions(
-    //     page: number = 1,
-    //     limit: number = 10,
-    //     eventname: string = 'Transfer',
-    //     tokentype: TokenType = TokenType.All
-    // ): Observable<PagedResult> {
-    //     return this.httpClient.get<PagedResult>(
-    //         this.baseUrl + `/api/transactions?page=${page}&limit=${limit}&eventname=${eventname}&tokentype=${tokentype}`
-    //     );
-    // }
-
-    // getBlocks(page: number = 1, limit: number = 10, eventname: string = 'Transfer'): Observable<PagedResult> {
-    //     return this.httpClient.get<PagedResult>(this.baseUrl + `/api/blocks?page=${page}&limit=${limit}&eventname=${eventname}`);
-    // }
 }
