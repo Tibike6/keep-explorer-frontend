@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../../data.service';
+import { DataService } from '../../services/data.service';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { QueryRef } from 'apollo-angular';

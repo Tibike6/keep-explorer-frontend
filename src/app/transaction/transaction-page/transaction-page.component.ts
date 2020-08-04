@@ -1,6 +1,6 @@
 import { TransferAggregationViewModel } from './../../models/transferAggregation.viewmodel';
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../../data.service';
+import { DataService } from '../../services/data.service';
 import { Observable } from 'rxjs';
 import { map, delay } from 'rxjs/operators';
 import { TransferViewModel } from 'src/app/models/transfer.viewmodel';

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { DataService } from '../../data.service';
+import { DataService } from '../../services/data.service';
 import { QueryRef } from 'apollo-angular';
 import { BlockViewModel } from '../../models/block.viewmodel';
 

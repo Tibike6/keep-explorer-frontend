@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Apollo, QueryRef } from 'apollo-angular';
 import { map } from 'rxjs/operators';
-import { ITransfer, ITransferAggregation } from './models/interfaces';
+import { ITransfer, ITransferAggregation } from '../models/interfaces';
 import gql from 'graphql-tag';
 
 const TRANSFERS_QUERY = gql`

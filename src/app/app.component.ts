@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Theme } from './models/interfaces';
+import { ThemeService } from './services/theme.service';
 
 @Component({
     selector: 'app-root',
@@ -10,17 +11,16 @@ import { Theme } from './models/interfaces';
 export class AppComponent implements OnInit {
     public isActive = false;
     public Theme = Theme;
-    public theme: Theme;
 
-    constructor(private router: Router) {}
+    constructor(private router: Router, public themeService: ThemeService) {}
 
     ngOnInit() {
         this.router.events.subscribe((event) => {
             if (event instanceof NavigationEnd) {
                 if (event.urlAfterRedirects.includes('/tbtc')) {
-                    this.theme = Theme.TBTC;
+                    this.themeService.setTheme(Theme.TBTC);
                 } else {
-                    this.theme = Theme.KEEP;
+                    this.themeService.setTheme(Theme.KEEP);
                 }
             }
         });
