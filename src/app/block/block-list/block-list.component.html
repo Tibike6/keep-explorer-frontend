@@ -1,8 +1,8 @@
 <div class="card shadow-sm mt-4">
   <div class="card-header d-flex justify-content-between flex-wrap">
     <div class="h4 d-flex align-items-center m-0">
-      <app-block-icon class="mr-1"></app-block-icon>
-      <span [class.tbtc-title]="themeService.getCurrentTheme() === Theme.TBTC">Blocks</span>
+      <app-block-icon></app-block-icon>
+      <span class="ml-2" [class.tbtc-title]="themeService.getCurrentTheme() === Theme.TBTC">Blocks</span>
     </div>
     <button type="button" class="btn btn-primary btn-sm text-white"
       [routerLink]="themeService.getCurrentTheme() === Theme.KEEP ? '/keep/blocks' : '/tbtc/blocks'">

@@ -2,17 +2,28 @@
   <div class="row">
     <div class="col-12">
       <div class="card shadow-sm mt-3">
-        <div class="card-header d-flex justify-content-between">
-          <div class="h4 m-0" [class.tbtc-title]="themeService.getCurrentTheme() === Theme.TBTC">Transfer Analytics</div>
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <div class="h4 m-0" [class.tbtc-title]="themeService.getCurrentTheme() === Theme.TBTC">
+            <svg width="30" height="30" viewBox="0 0 16 16" class="bi bi-bar-chart-line"
+              fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd"
+                d="M4 11H2v3h2v-3zm5-4H7v7h2V7zm5-5h-2v12h2V2zm-2-1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1h-2zM6 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm-5 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3z" />
+              <path fill-rule="evenodd" d="M0 14.5a.5.5 0 0 1 .5-.5h15a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5z" />
+            </svg>
+            <span class="ml-2">Transfer Analytics</span>
+          </div>
           <div class="btn-group" btnRadioGroup [(ngModel)]="transferAnalyticsModel">
-            <label class="btn btn-primary m-0" tabindex="0" btnRadio="days" (click)="loadChartsData()">Last 15 days</label>
-            <label class="btn btn-primary m-0" tabindex="0" btnRadio="months" (click)="loadChartsData()">Last months</label>
+            <label class="btn btn-primary m-0" tabindex="0" btnRadio="days" (click)="loadChartsData()">Last 15
+              days</label>
+            <label class="btn btn-primary m-0" tabindex="0" btnRadio="months" (click)="loadChartsData()">Last
+              months</label>
           </div>
         </div>
         <ng-container *ngIf="transferAggregation$ | async as transferAggregation; else loadingAnalytics">
           <div class="card-body p-4">
-            <canvas baseChart [datasets]="transferAggregation.chartData" [labels]="transferAggregation.chartLabels" [options]="transferAggregation.barChartOptions"
-              [legend]="true" chartType="bar" [colors]="transferAggregation.chartColors">
+            <canvas baseChart [datasets]="transferAggregation.chartData" [labels]="transferAggregation.chartLabels"
+              [options]="transferAggregation.barChartOptions" [legend]="true" chartType="bar"
+              [colors]="transferAggregation.chartColors">
             </canvas>
           </div>
         </ng-container>

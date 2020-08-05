@@ -6,8 +6,8 @@ import { Component, OnInit, Input } from '@angular/core';
     styleUrls: ['./block-icon.component.scss']
 })
 export class BlockIconComponent implements OnInit {
-    @Input() width = 38;
-    @Input() height = 34;
+    @Input() width = 30;
+    @Input() height = 30;
 
     constructor() {}
 
