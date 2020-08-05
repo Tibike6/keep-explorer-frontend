@@ -9,9 +9,14 @@
     color: black;
   }
 
-  .nav-link.active{
+  .nav-link.active.text-white{
     display: inline-flex;
     border-bottom: 2px solid #48dbb4;
+  }
+
+  .nav-link.active.text-black{
+    display: inline-flex;
+    border-bottom: 2px solid #000;
   }
 
   .logo-tbtc {
