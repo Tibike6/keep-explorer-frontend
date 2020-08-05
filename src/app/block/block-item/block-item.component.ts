@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import * as moment from 'moment';
-import { BlockViewModel } from 'src/app/models/block.viewmodel';
+import { BlockViewModel } from '../../models/block.viewmodel';
+import { ThemeService } from '../../services/theme.service';
+import { Theme } from '../../models/interfaces';
+import { Utils } from '../../utils';
 
 @Component({
     selector: 'app-block-item',
@@ -9,12 +11,10 @@ import { BlockViewModel } from 'src/app/models/block.viewmodel';
 })
 export class BlockItemComponent implements OnInit {
     @Input() public block: BlockViewModel;
+    public Theme = Theme;
+    public Utils = Utils;
 
-    constructor() {}
+    constructor(public themeService: ThemeService) {}
 
     ngOnInit(): void {}
-
-    public getTimeAgo(timestamp: number) {
-        return moment(new Date(Number(timestamp) * 1000).toUTCString()).fromNow();
-    }
 }

@@ -48,8 +48,8 @@ export interface IBlock {
 }
 
 export enum Theme {
-    KEEP = 'Keep',
-    TBTC = 'Tbtc'
+    KEEP = 'keep',
+    TBTC = 'tbtc'
 }
 
 export interface PagedResult {

@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeKeepComponent implements OnInit {
     constructor() {
-        window['switchStyle']('Keep');
+        // tslint:disable-next-line: no-string-literal
+        window['switchStyle']('keep');
     }
 
     ngOnInit() {}

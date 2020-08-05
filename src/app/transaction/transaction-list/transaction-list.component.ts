@@ -23,6 +23,8 @@ export class TransactionListComponent implements OnInit {
     }
 
     public load() {
-        this.transfers$ = this.dataService.getTransfers(1, 10).pipe(map((x) => x.map((t) => new TransferViewModel(t))));
+        this.transfers$ = this.dataService
+            .getTransfers(this.themeService.getCurrentTheme(), 1, 10)
+            .pipe(map((x) => x.map((t) => new TransferViewModel(t))));
     }
 }

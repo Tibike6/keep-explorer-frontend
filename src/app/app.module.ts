@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,7 +22,7 @@ import { BlockItemComponent } from './block/block-item/block-item.component';
 import { TransactionIconComponent } from './shared/transaction-icon/transaction-icon.component';
 import { GraphQLModule } from './graphql.module';
 import { LoadingComponent } from './shared/loading/loading.component';
-import { AnalyticsPageComponent } from './analytics/analytics-page/analytics-page.component';
+import { GrantsPageComponent } from './grants/grants-page/grants-page.component';
 import { TbtcLogoComponent } from './shared/tbtc-logo/tbtc-logo.component';
 import { KeepLogoComponent } from './shared/keep-logo/keep-logo.component';
 
@@ -39,12 +40,13 @@ import { KeepLogoComponent } from './shared/keep-logo/keep-logo.component';
         BlockItemComponent,
         TransactionIconComponent,
         LoadingComponent,
-        AnalyticsPageComponent,
+        GrantsPageComponent,
         TbtcLogoComponent,
         KeepLogoComponent
     ],
     imports: [
         BrowserModule,
+        CommonModule,
         AppRoutingModule,
         BrowserAnimationsModule,
         HttpClientModule,

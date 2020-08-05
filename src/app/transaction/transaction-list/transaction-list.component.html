@@ -2,7 +2,7 @@
     <div class="card-header d-flex justify-content-between flex-wrap">
         <div class="h4 d-flex justify-content-center align-items-center m-0">
           <app-transaction-icon class="mr-2"></app-transaction-icon>
-          <span>Transactions</span>
+          <span [class.tbtc-title]="themeService.getCurrentTheme() === Theme.TBTC">Transactions</span>
         </div>
         <button type="button" class="btn btn-primary btn-sm text-white" [routerLink]="(themeService.getCurrentTheme() === Theme.KEEP) ? '/keep/transactions' : '/tbtc/transactions'">View All Transactions</button>
     </div>

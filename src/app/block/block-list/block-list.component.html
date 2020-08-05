@@ -1,25 +1,30 @@
 <div class="card shadow-sm mt-4">
-    <div class="card-header d-flex justify-content-between flex-wrap">
-        <div class="h4 d-flex align-items-center m-0">
-            <app-block-icon class="mr-1"></app-block-icon>
-            <span>Blocks</span>
-        </div>
-        <button type="button" class="btn btn-primary btn-sm text-white" [routerLink]="(themeService.getCurrentTheme() === Theme.KEEP) ? '/keep/blocks' : '/tbtc/blocks'">View All Blocks</button>
+  <div class="card-header d-flex justify-content-between flex-wrap">
+    <div class="h4 d-flex align-items-center m-0">
+      <app-block-icon class="mr-1"></app-block-icon>
+      <span [class.tbtc-title]="themeService.getCurrentTheme() === Theme.TBTC">Blocks</span>
     </div>
-    <ng-container *ngIf="blocks$ | async as blocks; else loading">
-        <div class="card-body p-0">
-            <ul class="list-group list-group-horizontal-md w-100 p-4">
-                <li class="list-group-item flex-fill" *ngFor="let block of blocks$ | async | slice: 0:5; let i = index">
-                    <div class="d-flex flex-column align-items-center justify-content-center">
-                        <span class="text-primary font-weight-bold">Block</span>
-                        <a class="text-primary text-truncate font-weight-bold" href="#">#{{ block.number }}</a>
-                        <span class="text-secondary">{{ block.transactionsCount }} Txn</span>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </ng-container>
-    <ng-template #loading>
-        <app-loading></app-loading>
-    </ng-template>
+    <button type="button" class="btn btn-primary btn-sm text-white"
+      [routerLink]="themeService.getCurrentTheme() === Theme.KEEP ? '/keep/blocks' : '/tbtc/blocks'">
+      View All Blocks
+    </button>
+  </div>
+  <ng-container *ngIf="blocks$ | async as blocks; else loading">
+    <div class="card-body p-0">
+      <ul class="list-group list-group-horizontal-md w-100 p-4">
+        <li class="list-group-item flex-fill" *ngFor="let block of blocks$ | async | slice: 0:5; let i = index">
+          <div class="d-flex flex-column align-items-center justify-content-center">
+            <span class="text-primary font-weight-bold">Block</span>
+            <a class="text-primary text-truncate font-weight-bold" href="#">#{{ block.number }}</a>
+            <span
+              [ngClass]="themeService.getCurrentTheme() === Theme.TBTC ? 'text-primary' : 'text-secondary'">{{ block.transactionsCount }}
+              Txn</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </ng-container>
+  <ng-template #loading>
+    <app-loading></app-loading>
+  </ng-template>
 </div>

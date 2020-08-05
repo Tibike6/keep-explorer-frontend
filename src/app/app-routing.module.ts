@@ -4,7 +4,7 @@ import { TransactionPageComponent } from './transaction/transaction-page/transac
 import { HomeKeepComponent } from './home-keep/home-keep.component';
 import { HomeTbtcComponent } from './home-tbtc/home-tbtc.component';
 import { BlockPageComponent } from './block/block-page/block-page.component';
-import { AnalyticsPageComponent } from './analytics/analytics-page/analytics-page.component';
+import { GrantsPageComponent } from './grants/grants-page/grants-page.component';
 
 const routes: Routes = [
     {
@@ -19,8 +19,22 @@ const routes: Routes = [
         path: 'keep/blocks',
         component: BlockPageComponent
     },
-    { path: 'tbtc', component: HomeTbtcComponent },
-    { path: 'analytics', component: AnalyticsPageComponent },
+    {
+        path: 'tbtc',
+        component: HomeTbtcComponent
+    },
+    {
+        path: 'tbtc/transactions',
+        component: TransactionPageComponent
+    },
+    {
+        path: 'tbtc/blocks',
+        component: BlockPageComponent
+    },
+    {
+        path: 'keep/grants',
+        component: GrantsPageComponent
+    },
     { path: '', redirectTo: '/keep', pathMatch: 'full' },
     // { path: '**', component: PageNotFoundComponent },
     { path: '**', component: HomeKeepComponent }

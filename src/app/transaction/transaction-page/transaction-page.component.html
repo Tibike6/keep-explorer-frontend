@@ -3,7 +3,7 @@
     <div class="col-12">
       <div class="card shadow-sm mt-3">
         <div class="card-header d-flex justify-content-between">
-          <div class="h4 m-0">Transfer Transaction Analytics</div>
+          <div class="h4 m-0" [class.tbtc-title]="themeService.getCurrentTheme() === Theme.TBTC">Transfer Analytics</div>
           <div class="btn-group" btnRadioGroup [(ngModel)]="transferAnalyticsModel">
             <label class="btn btn-primary m-0" tabindex="0" btnRadio="days" (click)="loadChartsData()">Last 15 days</label>
             <label class="btn btn-primary m-0" tabindex="0" btnRadio="months" (click)="loadChartsData()">Last months</label>
@@ -24,7 +24,7 @@
         <div class="card-header d-flex justify-content-between flex-wrap">
           <div class="h4 d-flex justify-content-center align-items-center m-0">
             <app-transaction-icon class="mr-1"></app-transaction-icon>
-            <span>Transfer Transactions</span>
+            <span [class.tbtc-title]="themeService.getCurrentTheme() === Theme.TBTC">Transfer Transactions</span>
           </div>
         </div>
         <ng-container *ngIf="transfers$ | async as transfers; else loading">

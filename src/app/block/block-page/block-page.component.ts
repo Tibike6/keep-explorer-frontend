@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { QueryRef } from 'apollo-angular';
 import { BlockViewModel } from '../../models/block.viewmodel';
+import { ThemeService } from 'src/app/services/theme.service';
+import { Theme } from 'src/app/models/interfaces';
 
 @Component({
     selector: 'app-block-page',
@@ -16,15 +18,18 @@ export class BlockPageComponent implements OnInit {
     // public totalItems = 0;
     public currentPage = 1;
     public page: number;
+    public Theme = Theme;
 
-    constructor(private dataService: DataService) {}
+    constructor(private dataService: DataService, public themeService: ThemeService) {}
 
     ngOnInit(): void {
+        // tslint:disable-next-line: no-string-literal
+        window['switchStyle'](this.themeService.getCurrentTheme());
         this.load();
     }
 
     public load() {
-        this.blocksQuery = this.dataService.getBlocksQueryRef(this.page, 10);
+        this.blocksQuery = this.dataService.getBlocksQueryRef(this.themeService.getCurrentTheme(), this.page, 10);
         this.blocks$ = this.blocksQuery.valueChanges.pipe(map((x) => x.data.blocks.map((b) => new BlockViewModel(b))));
     }
 

@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeTbtcComponent implements OnInit {
     constructor() {
-        window['switchStyle']('Tbtc');
+        // tslint:disable-next-line: no-string-literal
+        window['switchStyle']('tbtc');
     }
 
     ngOnInit() {}

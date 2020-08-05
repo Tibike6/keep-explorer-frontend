@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { DataService } from '../../services/data.service';
@@ -24,7 +24,7 @@ export class BlockListComponent implements OnInit {
     }
 
     public load() {
-        this.blocksQuery = this.dataService.getBlocksQueryRef(1, 10);
+        this.blocksQuery = this.dataService.getBlocksQueryRef(this.themeService.getCurrentTheme(), 1, 10);
         this.blocks$ = this.blocksQuery.valueChanges.pipe(map((x) => x.data.blocks.map((b) => new BlockViewModel(b))));
     }
 }
