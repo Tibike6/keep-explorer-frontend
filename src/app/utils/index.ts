@@ -10,6 +10,10 @@ export class Utils {
         return moment(new Date(Number(timestamp) * 1000).toUTCString()).fromNow();
     }
 
+    public static getDate(timestamp: number) {
+        return moment(new Date(Number(timestamp) * 1000).toUTCString()).format('MMMM Do YYYY, hh:mm:ss A');
+    }
+
     public static printQuantity(value: string): number {
         if (!value || value === '0') {
             return 0;
@@ -24,6 +28,24 @@ export class Utils {
     public static zeroPad(value: string, places: number): string {
         const zero = places - value.length + 1;
         return Array(+(zero > 0 && zero)).join('0') + value;
+    }
+
+    public static toFixed(x) {
+        if (Math.abs(x) < 1.0) {
+            const e = parseInt(x.toString().split('e-')[1], 10);
+            if (e) {
+                x *= Math.pow(10, e - 1);
+                x = '0.' + new Array(e).join('0') + x.toString().substring(2);
+            }
+        } else {
+            let e = parseInt(x.toString().split('+')[1], 10);
+            if (e > 20) {
+                e -= 20;
+                x /= Math.pow(10, e);
+                x += new Array(e + 1).join('0');
+            }
+        }
+        return x;
     }
 
     public static getThemeText(theme: Theme) {

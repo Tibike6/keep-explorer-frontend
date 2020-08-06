@@ -1,0 +1,141 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="card shadow-sm mt-3">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <div class="h4 m-0" [class.tbtc-title]="themeService.getCurrentTheme() === Theme.TBTC">
+            <span class="ml-2">Block Details</span>
+          </div>
+        </div>
+        <div class="card-body p-4">
+          <ng-container *ngIf="block$ | async as block; else loading">
+            <div class="row align-items-center">
+              <div class="col-md-3 text-primary" [class.font-weight-bold]="themeService.getCurrentTheme() === Theme.TBTC">
+                Block Height:
+              </div>
+              <div class="col-md-9">
+                <span>{{ block.number }}</span>
+              </div>
+            </div>
+            <hr class="hr-space" />
+            <div class="row align-items-center">
+              <div class="col-md-3 text-primary" [class.font-weight-bold]="themeService.getCurrentTheme() === Theme.TBTC">
+                Timestamp:
+              </div>
+              <div class="col-md-9">
+                <span>{{ Utils.getTimeAgo(block.timestamp) }} ({{ Utils.getDate(block.timestamp) }})</span>
+              </div>
+            </div>
+            <hr class="hr-space" />
+            <div class="row align-items-center">
+              <div class="col-md-3 text-primary" [class.font-weight-bold]="themeService.getCurrentTheme() === Theme.TBTC">
+                Mined by:
+              </div>
+              <div class="col-md-9">
+                <span>{{ block.author }}</span>
+              </div>
+            </div>
+            <hr class="hr-space" />
+            <div class="row align-items-center">
+              <div class="col-md-3 text-primary" [class.font-weight-bold]="themeService.getCurrentTheme() === Theme.TBTC">
+                Transactions [{{block.transactions?.length}}]:
+              </div>
+              <ul class="col-md-9 m-0 list-unstyled">
+                <li *ngFor="let transaction of block.transactions; let i = index;">
+                  <div class="text-truncate">
+                    <a [routerLink]="['/' + themeService.getCurrentTheme() +'/transactions', transaction.hash]"> {{ transaction.hash }}</a>
+                  </div>
+                  <hr *ngIf="i < block?.transactions?.length - 1" class="my-1" />
+                </li>
+              </ul>
+            </div>
+            <hr class="hr-space" />
+            <div class="row align-items-center">
+              <div class="col-md-3 text-primary" [class.font-weight-bold]="themeService.getCurrentTheme() === Theme.TBTC">
+                Size:
+              </div>
+              <div class="col-md-9">
+                <span>{{ Number(block.size).toLocaleString('en-US') }} bytes</span>
+              </div>
+            </div>
+            <hr class="hr-space" />
+            <div class="row align-items-center">
+              <div class="col-md-3 text-primary" [class.font-weight-bold]="themeService.getCurrentTheme() === Theme.TBTC">
+                Gas Used:
+              </div>
+              <div class="col-md-9">
+                <span>{{ Number(block.gasUsed).toLocaleString('en-US') }} bytes</span> ({{ (block.gasUsed / block.gasLimit * 100).toFixed(2) }}%)
+              </div>
+            </div>
+            <hr class="hr-space" />
+            <div class="row align-items-center">
+              <div class="col-md-3 text-primary" [class.font-weight-bold]="themeService.getCurrentTheme() === Theme.TBTC">
+                Gas Limit:
+              </div>
+              <div class="col-md-9">
+                <span>{{ Number(block.gasLimit).toLocaleString('en-US') }} bytes</span>
+              </div>
+            </div>
+            <hr class="hr-space" />
+            <div class="row align-items-center">
+              <div class="col-md-3 text-primary" [class.font-weight-bold]="themeService.getCurrentTheme() === Theme.TBTC">
+                Difficulty:
+              </div>
+              <div class="col-md-9">
+                <span>{{ Number(block.difficulty).toLocaleString('en-US') }}</span>
+              </div>
+            </div>
+            <hr class="hr-space" />
+            <div class="row align-items-center">
+              <div class="col-md-3 text-primary" [class.font-weight-bold]="themeService.getCurrentTheme() === Theme.TBTC">
+                Total Difficulty:
+              </div>
+              <div class="col-md-9">
+                <span>{{ Number(block.totalDifficulty).toLocaleString('en-US') }}</span>
+              </div>
+            </div>
+            <hr class="hr-space" />
+            <div class="row align-items-center">
+              <div class="col-md-3 text-primary" [class.font-weight-bold]="themeService.getCurrentTheme() === Theme.TBTC">
+                Block Hash:
+              </div>
+              <div class="col-md-9">
+                <span>{{ block.hash }}</span>
+              </div>
+            </div>
+            <hr class="hr-space" />
+            <div class="row align-items-center">
+              <div class="col-md-3 text-primary" [class.font-weight-bold]="themeService.getCurrentTheme() === Theme.TBTC">
+                Parent Hash:
+              </div>
+              <div class="col-md-9">
+                <span>{{ block.parentHash }}</span>
+              </div>
+            </div>
+            <hr class="hr-space" />
+            <div class="row align-items-center">
+              <div class="col-md-3 text-primary" [class.font-weight-bold]="themeService.getCurrentTheme() === Theme.TBTC">
+                Transactions Root:
+              </div>
+              <div class="col-md-9">
+                <span>{{ block.transactionsRoot }}</span>
+              </div>
+            </div>
+            <hr class="hr-space" />
+            <div class="row align-items-center">
+              <div class="col-md-3 text-primary" [class.font-weight-bold]="themeService.getCurrentTheme() === Theme.TBTC">
+                State Root:
+              </div>
+              <div class="col-md-9">
+                <span>{{ block.stateRoot }}</span>
+              </div>
+            </div>
+          </ng-container>
+          <ng-template #loading>
+            <app-loading></app-loading>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

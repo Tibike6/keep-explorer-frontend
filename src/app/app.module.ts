@@ -13,6 +13,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
 import { TransactionListComponent } from './transaction/transaction-list/transaction-list.component';
 import { TransactionItemComponent } from './transaction/transaction-item/transaction-item.component';
 import { TransactionPageComponent } from './transaction/transaction-page/transaction-page.component';
+import { TransactionDetailComponent } from './transaction/transaction-detail/transaction-detail.component';
 import { BlockPageComponent } from './block/block-page/block-page.component';
 import { BlockListComponent } from './block/block-list/block-list.component';
 import { HomeKeepComponent } from './home-keep/home-keep.component';
@@ -25,6 +26,7 @@ import { LoadingComponent } from './shared/loading/loading.component';
 import { GrantsPageComponent } from './grants/grants-page/grants-page.component';
 import { TbtcLogoComponent } from './shared/tbtc-logo/tbtc-logo.component';
 import { KeepLogoComponent } from './shared/keep-logo/keep-logo.component';
+import { BlockDetailComponent } from './block/block-detail/block-detail.component';
 
 @NgModule({
     declarations: [
@@ -39,6 +41,8 @@ import { KeepLogoComponent } from './shared/keep-logo/keep-logo.component';
         BlockIconComponent,
         BlockItemComponent,
         TransactionIconComponent,
+        TransactionDetailComponent,
+        BlockDetailComponent,
         LoadingComponent,
         GrantsPageComponent,
         TbtcLogoComponent,

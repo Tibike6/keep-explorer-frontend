@@ -2,13 +2,17 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Apollo, QueryRef } from 'apollo-angular';
 import { map } from 'rxjs/operators';
-import { ITransfer, ITransferAggregation } from '../models/interfaces';
+import { ITransfer, ITransferAggregation, ITransaction, IBlock } from '../models/interfaces';
 import { TRANSFERS_QUERY, MONTHLY_TRANSFERS_QUERY, DAILY_TRANSFERS_QUERY } from '../queries/transfers.query';
-import { BLOCKS_QUERY } from '../queries/blocks.query';
+import { TRANSACTION_QUERY } from '../queries/transaction.query';
+import { BLOCKS_QUERY, BLOCK_QUERY } from '../queries/blocks.query';
 
 type Response = {
     transfers: ITransfer[] | null;
     blocks: ITransfer[] | null;
+    transactions: ITransaction[] | null;
+    transaction: ITransaction | null;
+    block: IBlock | null;
 };
 
 @Injectable({
@@ -30,6 +34,20 @@ export class DataService {
             variables: { pageSize, skip: pageSize * (page - 1) },
             fetchPolicy: 'network-only'
         });
+    }
+
+    public getTransaction(clientName: string = 'keep', hash: string): Observable<ITransaction> {
+        return this.apollo
+            .use(clientName)
+            .watchQuery<Response>({ query: TRANSACTION_QUERY, variables: { id: hash } })
+            .valueChanges.pipe(map((x) => x.data.transaction));
+    }
+
+    public getBlock(clientName: string = 'keep', blockhash: string): Observable<IBlock> {
+        return this.apollo
+            .use(clientName)
+            .watchQuery<Response>({ query: BLOCK_QUERY, variables: { id: blockhash } })
+            .valueChanges.pipe(map((x) => x.data.block));
     }
 
     public getBlocksQueryRef(clientName: string = 'keep', page: number = 1, pageSize: number = 10): QueryRef<Response> {

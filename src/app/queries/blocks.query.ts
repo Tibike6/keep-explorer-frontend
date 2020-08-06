@@ -19,3 +19,31 @@ export const BLOCKS_QUERY = gql`
         }
     }
 `;
+
+export const BLOCK_QUERY = gql`
+    query block($id: String) {
+        block(id: $id) {
+            id
+            hash
+            parentHash
+            unclesHash
+            author
+            stateRoot
+            transactionsRoot
+            receiptsRoot
+            number
+            gasUsed
+            gasLimit
+            timestamp
+            difficulty
+            totalDifficulty
+            size
+            transactions {
+                hash
+                transferEvents {
+                    id
+                }
+            }
+        }
+    }
+`;

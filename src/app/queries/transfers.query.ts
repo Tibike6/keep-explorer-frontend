@@ -11,6 +11,7 @@ export const TRANSFERS_QUERY = gql`
                 hash
                 block {
                     number
+                    hash
                 }
             }
         }

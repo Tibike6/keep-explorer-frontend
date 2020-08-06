@@ -15,7 +15,7 @@
         <li class="list-group-item flex-fill" *ngFor="let block of blocks$ | async | slice: 0:5; let i = index">
           <div class="d-flex flex-column align-items-center justify-content-center">
             <span class="text-primary font-weight-bold">Block</span>
-            <a class="text-primary text-truncate font-weight-bold" href="#">#{{ block.number }}</a>
+            <a class="text-primary text-truncate font-weight-bold" [routerLink]="['/' + themeService.getCurrentTheme() +'/blocks', block.hash]">#{{ block.number }}</a>
             <span
               [ngClass]="themeService.getCurrentTheme() === Theme.TBTC ? 'text-primary' : 'text-secondary'">{{ block.transactionsCount }}
               Txn</span>

@@ -19,8 +19,12 @@ export class AppComponent implements OnInit {
             if (event instanceof NavigationEnd) {
                 if (event.urlAfterRedirects.includes('/tbtc')) {
                     this.themeService.setTheme(Theme.TBTC);
+                    // tslint:disable-next-line: no-string-literal
+                    window['switchStyle']('tbtc');
                 } else {
                     this.themeService.setTheme(Theme.KEEP);
+                    // tslint:disable-next-line: no-string-literal
+                    window['switchStyle']('keep');
                 }
             }
         });
