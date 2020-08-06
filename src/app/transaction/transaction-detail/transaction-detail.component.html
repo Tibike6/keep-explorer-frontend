@@ -1,0 +1,124 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="card shadow-sm mt-3">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <div class="h4 m-0" [class.tbtc-title]="themeService.getCurrentTheme() === Theme.TBTC">
+            <span class="ml-2">Transaction Details</span>
+          </div>
+        </div>
+        <div class="card-body p-4">
+          <ng-container *ngIf="transaction$ | async as transaction; else loading">
+            <div class="row align-items-center">
+              <div class="col-md-3 text-primary" [class.font-weight-bold]="themeService.getCurrentTheme() === Theme.TBTC">
+                Transaction Hash:
+              </div>
+              <div class="col-md-9">
+                <span>{{ transaction.hash }}</span>
+              </div>
+            </div>
+            <hr class="hr-space" />
+            <div class="row align-items-center">
+              <div class="col-md-3 text-primary" [class.font-weight-bold]="themeService.getCurrentTheme() === Theme.TBTC">
+                Block:
+              </div>
+              <div class="col-md-9">
+                <a [routerLink]="['/' + themeService.getCurrentTheme() +'/blocks', transaction.block.hash]">{{ transaction.block.number }}</a>
+              </div>
+            </div>
+            <hr class="hr-space" />
+            <div class="row align-items-center">
+              <div class="col-md-3 text-primary" [class.font-weight-bold]="themeService.getCurrentTheme() === Theme.TBTC">
+                Transaction Index:
+              </div>
+              <div class="col-md-9">
+                <span>{{ transaction.index }}</span>
+              </div>
+            </div>
+            <hr class="hr-space" />
+            <div class="row align-items-center">
+              <div class="col-md-3 text-primary" [class.font-weight-bold]="themeService.getCurrentTheme() === Theme.TBTC">
+                Timestamp:
+              </div>
+              <div class="col-md-9">
+                <span>{{ Utils.getTimeAgo(transaction.timestamp) }} ({{ Utils.getDate(transaction.timestamp) }})</span>
+              </div>
+            </div>
+            <hr class="hr-space" />
+            <div class="row align-items-center">
+              <div class="col-md-3 text-primary" [class.font-weight-bold]="themeService.getCurrentTheme() === Theme.TBTC">
+                From:
+              </div>
+              <div class="col-md-9">
+                <span>{{ transaction.from }}</span>
+              </div>
+            </div>
+            <hr class="hr-space" />
+            <div class="row align-items-center">
+              <div class="col-md-3 text-primary" [class.font-weight-bold]="themeService.getCurrentTheme() === Theme.TBTC">
+                To:
+              </div>
+              <div class="col-md-9">
+                <span>{{ transaction.to }}</span>
+              </div>
+            </div>
+            <hr class="hr-space" />
+            <div class="row align-items-center">
+              <div class="col-md-3 text-primary" [class.font-weight-bold]="themeService.getCurrentTheme() === Theme.TBTC">
+                Token Transfers:
+              </div>
+              <ul class="col-md-9 m-0 list-unstyled">
+                <li *ngFor="let transfer of transaction.transferEvents; let i = index;">
+                  <div class="text-truncate">
+                    <span><u>From:</u> </span>
+                    <a> {{ transfer.from }}</a>
+                  </div>
+                  <div class="text-truncate">
+                    <span><u>To:</u> </span>
+                    <a> {{ transfer.to }}</a>
+                  </div>
+                  <div>
+                    <span><u>Value:</u></span>
+                    <span> {{ Utils.printQuantity(transfer.value) }}
+                      <strong>{{ themeService.getCurrentTheme() === Theme.TBTC ? 'tBTC' : 'KEEP'}}</strong></span>
+                  </div>
+                  <hr *ngIf="i < transaction?.transferEvents?.length - 1" class="my-1" />
+                </li>
+              </ul>
+            </div>
+            <hr class="hr-space" />
+            <div class="row align-items-center">
+              <div class="col-md-3 text-primary" [class.font-weight-bold]="themeService.getCurrentTheme() === Theme.TBTC">
+                Value:
+              </div>
+              <div class="col-md-9">
+                <span>{{ Utils.toFixed(Utils.printQuantity(transaction.value)) }} Ether</span>
+              </div>
+            </div>
+            <hr class="hr-space" />
+            <div class="row align-items-center">
+              <div class="col-md-3 text-primary" [class.font-weight-bold]="themeService.getCurrentTheme() === Theme.TBTC">
+                Gas Used by Transaction:
+              </div>
+              <div class="col-md-9">
+                <span>{{ Number(transaction.gasUsed).toLocaleString('en-US') }}</span>
+              </div>
+            </div>
+            <hr class="hr-space" />
+            <div class="row align-items-center">
+              <div class="col-md-3 text-primary" [class.font-weight-bold]="themeService.getCurrentTheme() === Theme.TBTC">
+                Gas Price:
+              </div>
+              <div class="col-md-9">
+                <span>{{ Utils.toFixed(Utils.printQuantity(transaction.gasPrice)) }} Ether</span>
+              </div>
+            </div>
+          </ng-container>
+          <ng-template #loading>
+            <app-loading></app-loading>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

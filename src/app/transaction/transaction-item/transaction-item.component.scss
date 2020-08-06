@@ -1,6 +1,10 @@
 :host {
   display: block;
 
+  a:not([href]) {
+      cursor: initial;
+  }
+
   .tbtc-logo {
     height: 36px;
     width: 36px;
