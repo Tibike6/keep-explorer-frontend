@@ -5,6 +5,7 @@ import { HomeKeepComponent } from './home-keep/home-keep.component';
 import { HomeTbtcComponent } from './home-tbtc/home-tbtc.component';
 import { BlockPageComponent } from './block/block-page/block-page.component';
 import { GrantsPageComponent } from './grant/grants-page/grants-page.component';
+import { StakingPageComponent } from './staking/staking-page/staking-page.component';
 import { TransactionDetailComponent } from './transaction/transaction-detail/transaction-detail.component';
 import { BlockDetailComponent } from './block/block-detail/block-detail.component';
 
@@ -52,6 +53,10 @@ const routes: Routes = [
     {
         path: 'keep/grants',
         component: GrantsPageComponent
+    },
+    {
+        path: 'keep/staking',
+        component: StakingPageComponent
     },
     { path: '', redirectTo: '/keep', pathMatch: 'full' },
     // { path: '**', component: PageNotFoundComponent },

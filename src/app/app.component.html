@@ -26,6 +26,9 @@
       <li class="nav-item" *ngIf="themeService.getCurrentTheme() === Theme.KEEP">
         <a class="nav-link text-white" [routerLink]="'/keep/grants'" routerLinkActive="active">Grants</a>
       </li>
+      <li class="nav-item" *ngIf="themeService.getCurrentTheme() === Theme.KEEP">
+        <a class="nav-link text-white" [routerLink]="'/keep/staking'" routerLinkActive="active">Staking</a>
+      </li>
     </ul>
     <form class="form-inline mt-2 mt-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search Txn Hash / Block" aria-label="Search" />
