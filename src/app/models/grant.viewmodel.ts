@@ -15,6 +15,7 @@ export class GrantViewModel {
     public start: number;
     public cliff: string;
     public withdrawn: number;
+    public availableToStake: number;
     public staked: number;
     public stakingPolicy: string;
     public timestamp: number;
@@ -34,6 +35,7 @@ export class GrantViewModel {
         this.start = Number(grant.start);
         this.cliff = grant.cliff;
         this.withdrawn = grant.withdrawn;
+        this.availableToStake = 0;
         this.staked = grant.staked;
         this.stakingPolicy = grant.stakingPolicy;
         this.timestamp = grant.timestamp;

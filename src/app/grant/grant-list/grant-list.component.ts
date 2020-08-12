@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
@@ -6,6 +6,7 @@ import { DataService } from '../../services/data.service';
 import { QueryRef } from 'apollo-angular';
 import { GrantViewModel } from '../../models/grant.viewmodel';
 import { Utils } from 'src/app/utils';
+import { Label, MultiDataSet, PluginServiceGlobalRegistrationAndOptions } from 'ng2-charts';
 
 export enum GrantTableSortingType {
     IdDesc = 'idDesc',
@@ -20,6 +21,16 @@ export enum GrantTableSortingType {
     StakedAsc = 'stakedAsc',
     RevokedDesc = 'revokedDesc',
     RevokedAsc = 'revokedAsc'
+}
+
+export interface GrantStats {
+    totalCount: number;
+    totalIssued: number;
+    totalAvailableToStake: number;
+    totalStaked: number;
+    totalWithdrawn: number;
+    totalRevoked: number;
+    totalReadyToRelease: number;
 }
 
 @Component({
@@ -39,11 +50,16 @@ export class GrantListComponent implements OnInit, OnDestroy {
     public colspan = window.innerWidth < 768 ? 5 : 7;
     public isCollapsed: Array<boolean> = [];
     public sortType = GrantTableSortingType.IdAsc;
+    public grantStats: GrantStats;
+    public doughnutChartLabels: Label[] = ['Withdrawn', 'Revoked', 'Ready to Release', 'Locked'];
+    public doughnutChartData: MultiDataSet = [[0, 0, 0]];
+    public chartColors = [{ backgroundColor: ['#48dbb4', '#af0000', '#616161', '#f7be13'] }];
+    public doughnutChartPlugins: PluginServiceGlobalRegistrationAndOptions[] = [];
 
     private matcher: MediaQueryList;
     private listener: any;
 
-    constructor(private dataService: DataService, private mediaMatcher: MediaMatcher, private cdRef: ChangeDetectorRef) {}
+    constructor(private dataService: DataService, private mediaMatcher: MediaMatcher) {}
 
     ngOnInit(): void {
         this.load();
@@ -167,7 +183,83 @@ export class GrantListComponent implements OnInit, OnDestroy {
                 this.totalItems = x.data?.grants?.length ?? 0;
                 this.isCollapsed = new Array(this.totalItems).fill(true);
             }),
-            map((x) => x.data.grants.map((g) => new GrantViewModel(g)))
+            map((x) => x.data.grants.map((g) => new GrantViewModel(g))),
+            tap((x) => this.createGrantStats(x))
         );
+    }
+
+    private createGrantStats(models: GrantViewModel[]) {
+        const grantStats: GrantStats = {
+            totalCount: 0,
+            totalAvailableToStake: 0,
+            totalIssued: 0,
+            totalReadyToRelease: 0,
+            totalStaked: 0,
+            totalRevoked: 0,
+            totalWithdrawn: 0
+        };
+
+        for (const model of models) {
+            grantStats.totalCount++;
+            grantStats.totalIssued += Number(model.amount);
+            // grantStats.totalAvailableToStake += model.availableToStake;
+            grantStats.totalReadyToRelease += Number(model.readyToReleaseExclusiveStaked);
+            grantStats.totalStaked += Number(model.staked);
+            grantStats.totalWithdrawn += Number(model.withdrawn);
+            grantStats.totalRevoked += Number(model.revokedAmount);
+        }
+
+        grantStats.totalIssued = Math.round(Utils.printQuantity(Utils.toFixed(grantStats.totalIssued)));
+        grantStats.totalReadyToRelease = Math.round(Utils.printQuantity(Utils.toFixed(grantStats.totalReadyToRelease)));
+        grantStats.totalStaked = Math.round(Utils.printQuantity(Utils.toFixed(grantStats.totalStaked)));
+        grantStats.totalWithdrawn = Math.round(Utils.printQuantity(Utils.toFixed(grantStats.totalWithdrawn)));
+        grantStats.totalRevoked = Math.round(Utils.printQuantity(Utils.toFixed(grantStats.totalRevoked)));
+
+        this.grantStats = grantStats;
+        this.doughnutChartData = [
+            [
+                grantStats.totalWithdrawn,
+                grantStats.totalRevoked,
+                grantStats.totalReadyToRelease,
+                grantStats.totalIssued - grantStats.totalReadyToRelease - grantStats.totalWithdrawn - grantStats.totalRevoked
+            ]
+        ];
+
+        this.doughnutChartPlugins.push({
+            beforeDraw(chart: any) {
+                const ctx = chart.ctx;
+                // const txt = 'Total Issued: ' + this.grantStats?.totalIssued;
+                const txt = `Issued: ${grantStats.totalIssued.toLocaleString('en-US')}`;
+                const txt2 = `Grant Count: ${grantStats.totalCount}`;
+
+                // Get options from the center object in options
+                const sidePadding = 65;
+                const sidePaddingCalculated = (sidePadding / 100) * (chart.innerRadius * 2);
+
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                const centerX = (chart.chartArea.left + chart.chartArea.right) / 2;
+                const centerY = (chart.chartArea.top + chart.chartArea.bottom) / 2;
+
+                // Get the width of the string and also the width of the element minus 10 to give it 5px side padding
+                const stringWidth = ctx.measureText(txt).width;
+                const elementWidth = chart.innerRadius * 2 - sidePaddingCalculated;
+
+                // Find out how much the font can grow in width.
+                const widthRatio = elementWidth / stringWidth;
+                const newFontSize = Math.floor(30 * widthRatio);
+                const elementHeight = chart.innerRadius * 2;
+
+                // Pick a new font size so it will not be larger than the height of label.
+                const fontSizeToUse = Math.min(newFontSize, elementHeight);
+
+                ctx.font = fontSizeToUse + 'px Arial';
+                ctx.fillStyle = 'black';
+
+                // Draw text in center
+                ctx.fillText(txt2, centerX, centerY - fontSizeToUse / 2 - 3);
+                ctx.fillText(txt, centerX, centerY + fontSizeToUse / 2);
+            }
+        });
     }
 }
