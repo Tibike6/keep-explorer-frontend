@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Apollo, QueryRef } from 'apollo-angular';
 import { map } from 'rxjs/operators';
-import { ITransfer, ITransferAggregation, ITransaction, IBlock } from '../models/interfaces';
+import { ITransfer, ITransferAggregation, ITransaction, IBlock, IGrant } from '../models/interfaces';
 import { TRANSFERS_QUERY, MONTHLY_TRANSFERS_QUERY, DAILY_TRANSFERS_QUERY } from '../queries/transfers.query';
 import { TRANSACTION_QUERY } from '../queries/transaction.query';
 import { BLOCKS_QUERY, BLOCK_QUERY } from '../queries/blocks.query';
+import { GRANTS_QUERY } from '../queries/grants.query';
 
 type Response = {
     transfers: ITransfer[] | null;
@@ -13,6 +14,7 @@ type Response = {
     transactions: ITransaction[] | null;
     transaction: ITransaction | null;
     block: IBlock | null;
+    grants: IGrant | null;
 };
 
 @Injectable({
@@ -54,6 +56,14 @@ export class DataService {
         return this.apollo.use(clientName).watchQuery<Response>({
             query: BLOCKS_QUERY,
             variables: { pageSize, skip: pageSize * (page - 1) },
+            fetchPolicy: 'network-only'
+        });
+    }
+
+    public getGrantsQueryRef(page: number = 1, pageSize: number = 10): QueryRef<Response> {
+        return this.apollo.watchQuery<Response>({
+            query: GRANTS_QUERY,
+            // variables: { pageSize, skip: pageSize * (page - 1) },
             fetchPolicy: 'network-only'
         });
     }

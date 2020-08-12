@@ -14,6 +14,14 @@ export class Utils {
         return moment(new Date(Number(timestamp) * 1000).toUTCString()).format('MMMM Do YYYY, hh:mm:ss A');
     }
 
+    public static getDateOnly(timestamp: number) {
+        return moment(new Date(Number(timestamp) * 1000).toUTCString()).format('MM-DD-YYYY');
+    }
+
+    public static getMonths(seconds: number) {
+        return moment.duration(seconds, 'seconds').asMonths();
+    }
+
     public static printQuantity(value: string): number {
         if (!value || value === '0') {
             return 0;

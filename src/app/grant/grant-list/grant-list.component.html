@@ -1,0 +1,285 @@
+<div class="card shadow-sm mt-4">
+  <div class="card-header d-flex justify-content-between flex-wrap">
+    <div class="h4 d-flex align-items-center m-0">
+      <span class="ml-2">Grant Statistics</span>
+    </div>
+  </div>
+  <div class="card-body p-0">
+  </div>
+</div>
+
+<div class="table-responsive mt-4">
+  <table class="table table-light table-borderless border border-secondary rounded m-0">
+    <thead class="bg-secondary text-white rounded">
+      <tr>
+        <th class="border-secondary" scope="col" (click)="sortBy('id')">
+          Grant ID
+          <svg *ngIf="this.sortType === GrantTableSortingType.IdAsc" width="20" height="20" viewBox="0 0 16 16"
+            class="bi bi-sort-numeric-down sort" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M4 2a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-1 0v-11A.5.5 0 0 1 4 2z" />
+            <path fill-rule="evenodd"
+              d="M6.354 11.146a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L4 12.793l1.646-1.647a.5.5 0 0 1 .708 0z" />
+            <path
+              d="M12.438 7V1.668H11.39l-1.262.906v.969l1.21-.86h.052V7h1.046zm-2.84 5.82c.054.621.625 1.278 1.761 1.278 1.422 0 2.145-.98 2.145-2.848 0-2.05-.973-2.688-2.063-2.688-1.125 0-1.972.688-1.972 1.836 0 1.145.808 1.758 1.719 1.758.69 0 1.113-.351 1.261-.742h.059c.031 1.027-.309 1.856-1.133 1.856-.43 0-.715-.227-.773-.45H9.598zm2.757-2.43c0 .637-.43.973-.933.973-.516 0-.934-.34-.934-.98 0-.625.407-1 .926-1 .543 0 .941.375.941 1.008z" />
+          </svg>
+          <svg *ngIf="this.sortType === GrantTableSortingType.IdDesc" width="20" height="20" viewBox="0 0 16 16"
+            class="bi bi-sort-numeric-up-alt sort" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M4 14a.5.5 0 0 0 .5-.5v-11a.5.5 0 0 0-1 0v11a.5.5 0 0 0 .5.5z" />
+            <path fill-rule="evenodd"
+              d="M6.354 4.854a.5.5 0 0 0 0-.708l-2-2a.5.5 0 0 0-.708 0l-2 2a.5.5 0 1 0 .708.708L4 3.207l1.646 1.647a.5.5 0 0 0 .708 0z" />
+            <path
+              d="M9.598 5.82c.054.621.625 1.278 1.761 1.278 1.422 0 2.145-.98 2.145-2.848 0-2.05-.973-2.688-2.063-2.688-1.125 0-1.972.688-1.972 1.836 0 1.145.808 1.758 1.719 1.758.69 0 1.113-.351 1.261-.742h.059c.031 1.027-.309 1.856-1.133 1.856-.43 0-.715-.227-.773-.45H9.598zm2.757-2.43c0 .637-.43.973-.933.973-.516 0-.934-.34-.934-.98 0-.625.407-1 .926-1 .543 0 .941.375.941 1.008zM12.438 14V8.668H11.39l-1.262.906v.969l1.21-.86h.052V14h1.046z" />
+          </svg>
+        </th>
+        <th class="border-secondary" scope="col" (click)="sortBy('amount')">
+          Grant Amount
+          <svg *ngIf="this.sortType === GrantTableSortingType.AmountAsc" width="20" height="20" viewBox="0 0 16 16"
+            class="bi bi-sort-numeric-down sort" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M4 2a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-1 0v-11A.5.5 0 0 1 4 2z" />
+            <path fill-rule="evenodd"
+              d="M6.354 11.146a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L4 12.793l1.646-1.647a.5.5 0 0 1 .708 0z" />
+            <path
+              d="M12.438 7V1.668H11.39l-1.262.906v.969l1.21-.86h.052V7h1.046zm-2.84 5.82c.054.621.625 1.278 1.761 1.278 1.422 0 2.145-.98 2.145-2.848 0-2.05-.973-2.688-2.063-2.688-1.125 0-1.972.688-1.972 1.836 0 1.145.808 1.758 1.719 1.758.69 0 1.113-.351 1.261-.742h.059c.031 1.027-.309 1.856-1.133 1.856-.43 0-.715-.227-.773-.45H9.598zm2.757-2.43c0 .637-.43.973-.933.973-.516 0-.934-.34-.934-.98 0-.625.407-1 .926-1 .543 0 .941.375.941 1.008z" />
+          </svg>
+          <svg *ngIf="this.sortType === GrantTableSortingType.AmountDesc" width="20" height="20" viewBox="0 0 16 16"
+            class="bi bi-sort-numeric-up-alt sort" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M4 14a.5.5 0 0 0 .5-.5v-11a.5.5 0 0 0-1 0v11a.5.5 0 0 0 .5.5z" />
+            <path fill-rule="evenodd"
+              d="M6.354 4.854a.5.5 0 0 0 0-.708l-2-2a.5.5 0 0 0-.708 0l-2 2a.5.5 0 1 0 .708.708L4 3.207l1.646 1.647a.5.5 0 0 0 .708 0z" />
+            <path
+              d="M9.598 5.82c.054.621.625 1.278 1.761 1.278 1.422 0 2.145-.98 2.145-2.848 0-2.05-.973-2.688-2.063-2.688-1.125 0-1.972.688-1.972 1.836 0 1.145.808 1.758 1.719 1.758.69 0 1.113-.351 1.261-.742h.059c.031 1.027-.309 1.856-1.133 1.856-.43 0-.715-.227-.773-.45H9.598zm2.757-2.43c0 .637-.43.973-.933.973-.516 0-.934-.34-.934-.98 0-.625.407-1 .926-1 .543 0 .941.375.941 1.008zM12.438 14V8.668H11.39l-1.262.906v.969l1.21-.86h.052V14h1.046z" />
+          </svg>
+        </th>
+        <th class="border-secondary" scope="col" (click)="sortBy('createdAt')">
+          Created At
+          <svg *ngIf="this.sortType === GrantTableSortingType.CreatedAtAsc" width="20" height="20" viewBox="0 0 16 16"
+            class="bi bi-sort-numeric-down sort" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M4 2a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-1 0v-11A.5.5 0 0 1 4 2z" />
+            <path fill-rule="evenodd"
+              d="M6.354 11.146a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L4 12.793l1.646-1.647a.5.5 0 0 1 .708 0z" />
+            <path
+              d="M12.438 7V1.668H11.39l-1.262.906v.969l1.21-.86h.052V7h1.046zm-2.84 5.82c.054.621.625 1.278 1.761 1.278 1.422 0 2.145-.98 2.145-2.848 0-2.05-.973-2.688-2.063-2.688-1.125 0-1.972.688-1.972 1.836 0 1.145.808 1.758 1.719 1.758.69 0 1.113-.351 1.261-.742h.059c.031 1.027-.309 1.856-1.133 1.856-.43 0-.715-.227-.773-.45H9.598zm2.757-2.43c0 .637-.43.973-.933.973-.516 0-.934-.34-.934-.98 0-.625.407-1 .926-1 .543 0 .941.375.941 1.008z" />
+          </svg>
+          <svg *ngIf="this.sortType === GrantTableSortingType.CreatedAtDesc" width="20" height="20" viewBox="0 0 16 16"
+            class="bi bi-sort-numeric-up-alt sort" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M4 14a.5.5 0 0 0 .5-.5v-11a.5.5 0 0 0-1 0v11a.5.5 0 0 0 .5.5z" />
+            <path fill-rule="evenodd"
+              d="M6.354 4.854a.5.5 0 0 0 0-.708l-2-2a.5.5 0 0 0-.708 0l-2 2a.5.5 0 1 0 .708.708L4 3.207l1.646 1.647a.5.5 0 0 0 .708 0z" />
+            <path
+              d="M9.598 5.82c.054.621.625 1.278 1.761 1.278 1.422 0 2.145-.98 2.145-2.848 0-2.05-.973-2.688-2.063-2.688-1.125 0-1.972.688-1.972 1.836 0 1.145.808 1.758 1.719 1.758.69 0 1.113-.351 1.261-.742h.059c.031 1.027-.309 1.856-1.133 1.856-.43 0-.715-.227-.773-.45H9.598zm2.757-2.43c0 .637-.43.973-.933.973-.516 0-.934-.34-.934-.98 0-.625.407-1 .926-1 .543 0 .941.375.941 1.008zM12.438 14V8.668H11.39l-1.262.906v.969l1.21-.86h.052V14h1.046z" />
+          </svg>
+        </th>
+        <th class="border-secondary" scope="col" (click)="sortBy('fullyUnlocked')">
+          Fully Unlocked At
+          <svg *ngIf="this.sortType === GrantTableSortingType.FullyUnlockedAtAsc" width="20" height="20"
+            viewBox="0 0 16 16" class="bi bi-sort-numeric-down sort" fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M4 2a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-1 0v-11A.5.5 0 0 1 4 2z" />
+            <path fill-rule="evenodd"
+              d="M6.354 11.146a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L4 12.793l1.646-1.647a.5.5 0 0 1 .708 0z" />
+            <path
+              d="M12.438 7V1.668H11.39l-1.262.906v.969l1.21-.86h.052V7h1.046zm-2.84 5.82c.054.621.625 1.278 1.761 1.278 1.422 0 2.145-.98 2.145-2.848 0-2.05-.973-2.688-2.063-2.688-1.125 0-1.972.688-1.972 1.836 0 1.145.808 1.758 1.719 1.758.69 0 1.113-.351 1.261-.742h.059c.031 1.027-.309 1.856-1.133 1.856-.43 0-.715-.227-.773-.45H9.598zm2.757-2.43c0 .637-.43.973-.933.973-.516 0-.934-.34-.934-.98 0-.625.407-1 .926-1 .543 0 .941.375.941 1.008z" />
+          </svg>
+          <svg *ngIf="this.sortType === GrantTableSortingType.FullyUnlockedAtDesc" width="20" height="20"
+            viewBox="0 0 16 16" class="bi bi-sort-numeric-up-alt sort" fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M4 14a.5.5 0 0 0 .5-.5v-11a.5.5 0 0 0-1 0v11a.5.5 0 0 0 .5.5z" />
+            <path fill-rule="evenodd"
+              d="M6.354 4.854a.5.5 0 0 0 0-.708l-2-2a.5.5 0 0 0-.708 0l-2 2a.5.5 0 1 0 .708.708L4 3.207l1.646 1.647a.5.5 0 0 0 .708 0z" />
+            <path
+              d="M9.598 5.82c.054.621.625 1.278 1.761 1.278 1.422 0 2.145-.98 2.145-2.848 0-2.05-.973-2.688-2.063-2.688-1.125 0-1.972.688-1.972 1.836 0 1.145.808 1.758 1.719 1.758.69 0 1.113-.351 1.261-.742h.059c.031 1.027-.309 1.856-1.133 1.856-.43 0-.715-.227-.773-.45H9.598zm2.757-2.43c0 .637-.43.973-.933.973-.516 0-.934-.34-.934-.98 0-.625.407-1 .926-1 .543 0 .941.375.941 1.008zM12.438 14V8.668H11.39l-1.262.906v.969l1.21-.86h.052V14h1.046z" />
+          </svg>
+        </th>
+        <th class="border-secondary d-none d-md-table-cell" scope="col" (click)="sortBy('staked')">
+          Staked
+          <svg *ngIf="this.sortType === GrantTableSortingType.StakedAsc" width="20" height="20" viewBox="0 0 16 16"
+            class="bi bi-sort-down-alt sort" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M3 3a.5.5 0 0 1 .5.5v10a.5.5 0 0 1-1 0v-10A.5.5 0 0 1 3 3z" />
+            <path fill-rule="evenodd"
+              d="M5.354 11.146a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L3 12.793l1.646-1.647a.5.5 0 0 1 .708 0zM7 6.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 0-1h-3a.5.5 0 0 0-.5.5zm0 3a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 0-1h-5a.5.5 0 0 0-.5.5zm0 3a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5zm0-9a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0-.5.5z" />
+          </svg>
+          <svg *ngIf="this.sortType === GrantTableSortingType.StakedDesc" width="20" height="20" viewBox="0 0 16 16"
+            class="bi bi-sort-up sort" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M3 13a.5.5 0 0 0 .5-.5v-10a.5.5 0 0 0-1 0v10a.5.5 0 0 0 .5.5z" />
+            <path fill-rule="evenodd"
+              d="M5.354 4.854a.5.5 0 0 0 0-.708l-2-2a.5.5 0 0 0-.708 0l-2 2a.5.5 0 1 0 .708.708L3 3.207l1.646 1.647a.5.5 0 0 0 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 9a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5z" />
+          </svg>
+        </th>
+        <th class="border-secondary d-none d-md-table-cell" scope="col" (click)="sortBy('revoked')">
+          Revoked
+          <svg *ngIf="this.sortType === GrantTableSortingType.RevokedAsc" width="20" height="20" viewBox="0 0 16 16"
+            class="bi bi-sort-down-alt sort" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M3 3a.5.5 0 0 1 .5.5v10a.5.5 0 0 1-1 0v-10A.5.5 0 0 1 3 3z" />
+            <path fill-rule="evenodd"
+              d="M5.354 11.146a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L3 12.793l1.646-1.647a.5.5 0 0 1 .708 0zM7 6.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 0-1h-3a.5.5 0 0 0-.5.5zm0 3a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 0-1h-5a.5.5 0 0 0-.5.5zm0 3a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5zm0-9a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0-.5.5z" />
+          </svg>
+          <svg *ngIf="this.sortType === GrantTableSortingType.RevokedDesc" width="20" height="20" viewBox="0 0 16 16"
+            class="bi bi-sort-up sort" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M3 13a.5.5 0 0 0 .5-.5v-10a.5.5 0 0 0-1 0v10a.5.5 0 0 0 .5.5z" />
+            <path fill-rule="evenodd"
+              d="M5.354 4.854a.5.5 0 0 0 0-.708l-2-2a.5.5 0 0 0-.708 0l-2 2a.5.5 0 1 0 .708.708L3 3.207l1.646 1.647a.5.5 0 0 0 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 9a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5z" />
+          </svg>
+        </th>
+        <th class="border-secondary" scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngIf="grants$ | async as grants; else loading">
+        <ng-container
+          *ngFor="let grant of grants | slice: (page - 1) * pageSize : (page - 1) * pageSize + pageSize; index as i">
+          <tr (click)="isCollapsed[i] = !isCollapsed[i]">
+            <th scope="row">{{ grant.id }}</th>
+            <td>{{ Math.round(Utils.printQuantity(grant.amount)).toLocaleString('en-US') }} <strong>KEEP</strong></td>
+            <td>{{ Utils.getDateOnly(grant.timestamp) }}</td>
+            <td>{{ Utils.getDateOnly(grant.start) }}</td>
+            <td class="d-none d-md-table-cell">
+              <svg *ngIf="grant.staked > 0" width="24" height="24" viewBox="0 0 16 16" class="bi bi-check-circle-fill"
+                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+              </svg>
+            </td>
+            <td class="d-none d-md-table-cell">
+              <svg *ngIf="grant.revokedAt != 0" width="24" height="24" viewBox="0 0 16 16"
+                class="bi bi-exclamation-diamond-fill revoked" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M9.05.435c-.58-.58-1.52-.58-2.1 0L.436 6.95c-.58.58-.58 1.519 0 2.098l6.516 6.516c.58.58 1.519.58 2.098 0l6.516-6.516c.58-.58.58-1.519 0-2.098L9.05.435zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
+              </svg>
+            </td>
+            <td>
+              <svg *ngIf="isCollapsed[i]" width="24" height="24" viewBox="0 0 16 16"
+                class="bi bi-caret-down-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm4 4a.5.5 0 0 0-.374.832l4 4.5a.5.5 0 0 0 .748 0l4-4.5A.5.5 0 0 0 12 6H4z" />
+              </svg>
+              <svg *ngIf="!isCollapsed[i]" width="24" height="24" viewBox="0 0 16 16" class="bi bi-caret-up-square-fill"
+                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm4 9a.5.5 0 0 1-.374-.832l4-4.5a.5.5 0 0 1 .748 0l4 4.5A.5.5 0 0 1 12 11H4z" />
+              </svg>
+            </td>
+          </tr>
+          <tr>
+            <td class="p-0" [attr.colspan]="colspan">
+              <div class="container" [collapse]="isCollapsed[i]" [isAnimated]="true">
+                <hr class="m-0" />
+                <div class="row">
+
+                  <div class="col-4 text-right font-weight-bold">
+                    Grant Manager:
+                  </div>
+                  <div class="col-8 text-truncate text-left">
+                    {{ grant.grantManager }}
+                  </div>
+
+                  <div class="col-4 text-right font-weight-bold">
+                    Tnx Hash:
+                  </div>
+                  <div class="col-8 text-truncate text-left">
+                    {{ grant.grantManager }}
+                  </div>
+
+                  <div class="col-4 text-right font-weight-bold">
+                    Grantee:
+                  </div>
+                  <div class="col-8 text-truncate text-left">
+                    {{ grant.grantee }}
+                  </div>
+
+                  <div class="col-4 text-right font-weight-bold">
+                    Grant Start:
+                  </div>
+                  <div class="col-8 text-truncate text-left">
+                    {{ Utils.getDateOnly(grant.start) }}
+                  </div>
+
+                  <div class="col-4 text-right font-weight-bold">
+                    Duration:
+                  </div>
+                  <div class="col-8 text-truncate text-left">
+                    {{ Math.round(Utils.getMonths(grant.duration)) }} months
+                  </div>
+
+                  <div class="col-4 text-right font-weight-bold">
+                    Withdrawn:
+                  </div>
+                  <div class="col-8 text-truncate text-left">
+                    {{  Math.round(Utils.printQuantity(grant.withdrawn)).toLocaleString('en-US') }} KEEP
+                  </div>
+
+                  <div class="col-4 text-right font-weight-bold">
+                    Ready to Release:
+                  </div>
+                  <div class="col-8 text-truncate text-left">
+
+                    {{ (Math.round(Utils.printQuantity(grant.readyToRelease)) > 0) ? Math.round(Utils.printQuantity(grant.readyToRelease)).toLocaleString('en-US') : 0 }}
+                    KEEP
+                  </div>
+
+                  <div class="col-4 text-right font-weight-bold">
+                    Staked:
+                  </div>
+                  <div class="col-8 text-truncate text-left">
+                    {{ Math.round(Utils.printQuantity(grant.staked)).toLocaleString('en-US') }} KEEP
+                  </div>
+
+                  <div class="col-4 text-right font-weight-bold">
+                    Cliff:
+                  </div>
+                  <div class="col-8 text-truncate text-left">
+                    {{ Utils.getDateOnly(grant.cliff) }}
+                  </div>
+
+                  <div class="col-4 text-right font-weight-bold">
+                    Revoked At:
+                  </div>
+                  <div class="col-8 text-truncate text-left">
+                    {{ (grant.revokedAt == 0) ? '-' : Utils.getDateOnly(grant.revokedAt) }}
+                  </div>
+
+                  <div class="col-4 text-right font-weight-bold">
+                    Revoked Amount:
+                  </div>
+                  <div class="col-8 text-truncate text-left">
+                    {{ Math.round(Utils.printQuantity(grant.revokedAmount)).toLocaleString('en-US') }} KEEP
+                  </div>
+
+                  <div class="col-4 text-right font-weight-bold">
+                    Revocable:
+                  </div>
+                  <div class="col-8 text-truncate text-left">
+                    {{ grant.revocable }}
+                  </div>
+
+                  <div class="col-4 text-right font-weight-bold">
+                    Revoked Withdrawn:
+                  </div>
+                  <div class="col-8 text-truncate text-left">
+                    {{ Math.round(Utils.printQuantity(grant.revokedWithdrawn)).toLocaleString('en-US') }} KEEP
+                  </div>
+
+                  <div class="col-4 text-right font-weight-bold">
+                    Staking Policy:
+                  </div>
+                  <div class="col-8 text-truncate text-left">
+                    {{ grant.stakingPolicy }}
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+      </ng-container>
+      <ng-template #loading>
+        <tr>
+          <th [attr.colspan]="colspan">
+            <app-loading></app-loading>
+          </th>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
+  <pagination class="d-flex justify-content-center" [boundaryLinks]="true" [totalItems]="totalItems" [(ngModel)]="page"
+    [maxSize]="5" (pageChanged)="pageChanged($event)" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;"
+    lastText="&raquo;"></pagination>
+</div>

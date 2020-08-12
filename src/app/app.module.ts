@@ -10,6 +10,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { FormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { TransactionListComponent } from './transaction/transaction-list/transaction-list.component';
 import { TransactionItemComponent } from './transaction/transaction-item/transaction-item.component';
 import { TransactionPageComponent } from './transaction/transaction-page/transaction-page.component';
@@ -23,9 +24,11 @@ import { BlockItemComponent } from './block/block-item/block-item.component';
 import { TransactionIconComponent } from './shared/transaction-icon/transaction-icon.component';
 import { GraphQLModule } from './graphql.module';
 import { LoadingComponent } from './shared/loading/loading.component';
-import { GrantsPageComponent } from './grants/grants-page/grants-page.component';
+import { GrantsPageComponent } from './grant/grants-page/grants-page.component';
 import { TbtcLogoComponent } from './shared/tbtc-logo/tbtc-logo.component';
 import { KeepLogoComponent } from './shared/keep-logo/keep-logo.component';
+import { GrantItemComponent } from './grant/grant-item/grant-item.component';
+import { GrantListComponent } from './grant/grant-list/grant-list.component';
 import { BlockDetailComponent } from './block/block-detail/block-detail.component';
 
 @NgModule({
@@ -46,7 +49,9 @@ import { BlockDetailComponent } from './block/block-detail/block-detail.componen
         LoadingComponent,
         GrantsPageComponent,
         TbtcLogoComponent,
-        KeepLogoComponent
+        KeepLogoComponent,
+        GrantItemComponent,
+        GrantListComponent
     ],
     imports: [
         BrowserModule,
@@ -58,7 +63,8 @@ import { BlockDetailComponent } from './block/block-detail/block-detail.componen
         FormsModule,
         ChartsModule,
         AlertModule.forRoot(),
-        // PaginationModule.forRoot(),
+        PaginationModule.forRoot(),
+        CollapseModule.forRoot(),
         GraphQLModule
     ],
     providers: [],

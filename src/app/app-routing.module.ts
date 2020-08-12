@@ -4,7 +4,7 @@ import { TransactionPageComponent } from './transaction/transaction-page/transac
 import { HomeKeepComponent } from './home-keep/home-keep.component';
 import { HomeTbtcComponent } from './home-tbtc/home-tbtc.component';
 import { BlockPageComponent } from './block/block-page/block-page.component';
-import { GrantsPageComponent } from './grants/grants-page/grants-page.component';
+import { GrantsPageComponent } from './grant/grants-page/grants-page.component';
 import { TransactionDetailComponent } from './transaction/transaction-detail/transaction-detail.component';
 import { BlockDetailComponent } from './block/block-detail/block-detail.component';
 

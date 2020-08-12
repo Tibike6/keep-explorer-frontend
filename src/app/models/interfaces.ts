@@ -47,9 +47,35 @@ export interface IBlock {
     transactions: ITransaction[];
 }
 
+export interface IGrant {
+    id: number;
+    grantManager: string;
+    grantee: string;
+    revokedAt: Date;
+    revokedAmount: number;
+    revokedWithdrawn: number;
+    revocable: boolean;
+    amount: number;
+    duration: number;
+    start: Date;
+    cliff: string;
+    withdrawn: number;
+    staked: number;
+    stakingPolicy: string;
+    timestamp: number;
+}
+
 export enum Theme {
     KEEP = 'keep',
     TBTC = 'tbtc'
+}
+
+export enum ScreenSize {
+    XS,
+    SM,
+    MD,
+    LG,
+    XL
 }
 
 export interface PagedResult {

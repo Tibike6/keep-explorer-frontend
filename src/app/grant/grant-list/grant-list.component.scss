@@ -1,0 +1,45 @@
+:host {
+    display: block;
+    width: 100%;
+
+    .table {
+      font-size: 14px;
+    }
+
+    .table > tbody > tr:nth-child(4n + 1) > td,
+    .table > tbody > tr:nth-child(4n + 1) > th,
+    .table > tbody > tr:nth-child(4n + 2) > td,
+    .table > tbody > tr:nth-child(4n + 2) > th {
+        background-color: #efefef;
+    }
+
+    .table td,
+    .table th {
+        text-align: center;
+        svg {
+            color: #48dbb4;
+        }
+        svg.revoked {
+          color: #af0000;
+        }
+        svg.sort {
+          color: #fff;
+        }
+    }
+
+    .table tr {
+        cursor: pointer;
+    }
+
+    .border {
+        border-width: 2px !important;
+    }
+
+    @media (max-width: 768px) {
+        .table td,
+        .table th {
+            padding: 6px;
+            font-size: 12px;
+        }
+    }
+}

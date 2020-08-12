@@ -12,7 +12,7 @@
   <ng-container *ngIf="blocks$ | async as blocks; else loading">
     <div class="card-body p-0">
       <ul class="list-group list-group-horizontal-md w-100 p-4">
-        <li class="list-group-item flex-fill" *ngFor="let block of blocks$ | async | slice: 0:5; let i = index">
+        <li class="list-group-item flex-fill" *ngFor="let block of blocks | slice: 0:5; let i = index">
           <div class="d-flex flex-column align-items-center justify-content-center">
             <span class="text-primary font-weight-bold">Block</span>
             <a class="text-primary text-truncate font-weight-bold" [routerLink]="['/' + themeService.getCurrentTheme() +'/blocks', block.hash]">#{{ block.number }}</a>
