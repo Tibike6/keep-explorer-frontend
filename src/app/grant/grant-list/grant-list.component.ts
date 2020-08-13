@@ -6,7 +6,8 @@ import { DataService } from '../../services/data.service';
 import { QueryRef } from 'apollo-angular';
 import { GrantViewModel } from '../../models/grant.viewmodel';
 import { Utils } from 'src/app/utils';
-import { Label, MultiDataSet, PluginServiceGlobalRegistrationAndOptions } from 'ng2-charts';
+import { Label, MultiDataSet, PluginServiceGlobalRegistrationAndOptions, ThemeService } from 'ng2-charts';
+import { ChartOptions } from 'chart.js';
 
 export enum GrantTableSortingType {
     IdDesc = 'idDesc',
@@ -52,14 +53,24 @@ export class GrantListComponent implements OnInit, OnDestroy {
     public sortType = GrantTableSortingType.IdAsc;
     public grantStats: GrantStats;
     public doughnutChartLabels: Label[] = ['Withdrawn', 'Revoked', 'Ready to Release', 'Locked'];
-    public doughnutChartData: MultiDataSet = [[0, 0, 0]];
+    public doughnutChartData = [[0, 0, 0]];
+    public options: ChartOptions = {
+        tooltips: {
+            callbacks: {
+                label(tooltipItem, chart) {
+                    const datasetLabel = chart.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].toLocaleString('en-US');
+                    return datasetLabel + ' KEEP';
+                }
+            }
+        }
+    };
     public chartColors = [{ backgroundColor: ['#48dbb4', '#af0000', '#616161', '#f7be13'] }];
     public doughnutChartPlugins: PluginServiceGlobalRegistrationAndOptions[] = [];
 
     private matcher: MediaQueryList;
     private listener: any;
 
-    constructor(private dataService: DataService, private mediaMatcher: MediaMatcher) {}
+    constructor(private dataService: DataService, private mediaMatcher: MediaMatcher, private themeService: ThemeService) {}
 
     ngOnInit(): void {
         this.load();
@@ -67,6 +78,7 @@ export class GrantListComponent implements OnInit, OnDestroy {
         // tslint:disable-next-line: deprecation
         this.listener = () => this.myListener(event);
         this.matcher.addEventListener('change', this.listener);
+        this.themeService.setColorschemesOptions(this.options);
     }
 
     ngOnDestroy(): void {
