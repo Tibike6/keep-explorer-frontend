@@ -53,7 +53,7 @@ export class GrantListComponent implements OnInit, OnDestroy {
     public sortType = GrantTableSortingType.IdAsc;
     public grantStats: GrantStats;
     public doughnutChartLabels: Label[] = ['Withdrawn', 'Revoked', 'Ready to Release', 'Locked'];
-    public doughnutChartData = [[0, 0, 0]];
+    public doughnutChartData = [[0, 0, 0, 0]];
     public options: ChartOptions = {
         tooltips: {
             callbacks: {
@@ -64,7 +64,7 @@ export class GrantListComponent implements OnInit, OnDestroy {
             }
         }
     };
-    public chartColors = [{ backgroundColor: ['#48dbb4', '#af0000', '#616161', '#f7be13'] }];
+    public chartColors = [{ backgroundColor: ['#48dbb4', '#af0000', '#616161', '#7cb5ec'] }];
     public doughnutChartPlugins: PluginServiceGlobalRegistrationAndOptions[] = [];
 
     private matcher: MediaQueryList;

@@ -8,6 +8,7 @@ import { GrantsPageComponent } from './grant/grants-page/grants-page.component';
 import { StakingPageComponent } from './staking/staking-page/staking-page.component';
 import { TransactionDetailComponent } from './transaction/transaction-detail/transaction-detail.component';
 import { BlockDetailComponent } from './block/block-detail/block-detail.component';
+import { TokenHolderPageComponent } from './token-holder/token-holder-page/token-holder-page.component';
 
 const routes: Routes = [
     {
@@ -57,6 +58,14 @@ const routes: Routes = [
     {
         path: 'keep/staking',
         component: StakingPageComponent
+    },
+    {
+        path: 'keep/token-holders',
+        component: TokenHolderPageComponent
+    },
+    {
+        path: 'tbtc/token-holders',
+        component: TokenHolderPageComponent
     },
     { path: '', redirectTo: '/keep', pathMatch: 'full' },
     // { path: '**', component: PageNotFoundComponent },

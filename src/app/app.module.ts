@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { FormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
 import { AlertModule } from 'ngx-bootstrap/alert';
@@ -30,6 +31,7 @@ import { KeepLogoComponent } from './shared/keep-logo/keep-logo.component';
 import { GrantItemComponent } from './grant/grant-item/grant-item.component';
 import { GrantListComponent } from './grant/grant-list/grant-list.component';
 import { BlockDetailComponent } from './block/block-detail/block-detail.component';
+import { TokenHolderPageComponent } from './token-holder/token-holder-page/token-holder-page.component';
 
 @NgModule({
     declarations: [
@@ -51,7 +53,8 @@ import { BlockDetailComponent } from './block/block-detail/block-detail.componen
         TbtcLogoComponent,
         KeepLogoComponent,
         GrantItemComponent,
-        GrantListComponent
+        GrantListComponent,
+        TokenHolderPageComponent
     ],
     imports: [
         BrowserModule,
@@ -65,6 +68,7 @@ import { BlockDetailComponent } from './block/block-detail/block-detail.componen
         AlertModule.forRoot(),
         PaginationModule.forRoot(),
         CollapseModule.forRoot(),
+        BsDropdownModule.forRoot(),
         GraphQLModule
     ],
     providers: [],

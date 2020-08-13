@@ -65,6 +65,12 @@ export interface IGrant {
     timestamp: number;
 }
 
+export interface ITokenHolder {
+    id: string;
+    tokenBalance: number;
+    transfersCount: number;
+}
+
 export enum Theme {
     KEEP = 'keep',
     TBTC = 'tbtc'

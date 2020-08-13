@@ -12,7 +12,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown" [ngClass]="{ show: isActive }">
-    <ul class="navbar-nav">
+    <ul class="navbar-nav d-flex flex-wrap">
       <li class="nav-item">
         <a class="nav-link" [ngClass]="themeService.getCurrentTheme() === Theme.KEEP ? 'text-white' : 'text-black'"
           [routerLink]="themeService.getCurrentTheme() === Theme.KEEP ? '/keep/blocks' : '/tbtc/blocks'"
@@ -22,6 +22,11 @@
         <a class="nav-link" [ngClass]="themeService.getCurrentTheme() === Theme.KEEP ? 'text-white' : 'text-black'"
           [routerLink]="themeService.getCurrentTheme() === Theme.KEEP ? '/keep/transactions' : '/tbtc/transactions'"
           routerLinkActive="active">Transactions</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [ngClass]="themeService.getCurrentTheme() === Theme.KEEP ? 'text-white' : 'text-black'"
+        [routerLink]="themeService.getCurrentTheme() === Theme.KEEP ? '/keep/token-holders' : '/tbtc/token-holders'"
+        routerLinkActive="active">Token Holders</a>
       </li>
       <li class="nav-item" *ngIf="themeService.getCurrentTheme() === Theme.KEEP">
         <a class="nav-link text-white" [routerLink]="'/keep/grants'" routerLinkActive="active">Grants</a>

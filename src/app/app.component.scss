@@ -5,6 +5,10 @@
         color: black;
     }
 
+    form {
+      flex-wrap: unset;
+    }
+
     .nav-link.active.text-white {
         display: inline-flex;
         border-bottom: 2px solid #48dbb4;
@@ -26,11 +30,12 @@
         }
 
         form {
+            flex-wrap: wrap;
             button {
                 width: 100%;
             }
             input {
-              text-align: center;
+                text-align: center;
             }
         }
     }
