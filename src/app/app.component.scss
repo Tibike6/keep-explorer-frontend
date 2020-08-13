@@ -1,27 +1,37 @@
 :host {
-  display: block;
+    display: block;
 
-  .navbar {
-    height: 56px;
-  }
+    .text-black {
+        color: black;
+    }
 
-  .text-black {
-    color: black;
-  }
+    .nav-link.active.text-white {
+        display: inline-flex;
+        border-bottom: 2px solid #48dbb4;
+    }
 
-  .nav-link.active.text-white{
-    display: inline-flex;
-    border-bottom: 2px solid #48dbb4;
-  }
+    .nav-link.active.text-black {
+        display: inline-flex;
+        border-bottom: 2px solid #000;
+    }
 
-  .nav-link.active.text-black{
-    display: inline-flex;
-    border-bottom: 2px solid #000;
-  }
+    .logo-tbtc {
+        padding: 10px 0;
+        margin-right: 15px;
+    }
 
-  .logo-tbtc {
-    padding: 10px 0;
-    margin-right: 15px;
-  }
+    @media (max-width: 575px) {
+        .nav-item {
+            text-align: center;
+        }
 
+        form {
+            button {
+                width: 100%;
+            }
+            input {
+              text-align: center;
+            }
+        }
+    }
 }
