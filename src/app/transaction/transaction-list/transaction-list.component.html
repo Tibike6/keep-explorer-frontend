@@ -1,20 +1,24 @@
 <div class="card shadow-sm mt-4">
-    <div class="card-header d-flex justify-content-between flex-wrap">
-        <div class="h4 d-flex justify-content-center align-items-center m-0">
-          <app-transaction-icon class="mr-2"></app-transaction-icon>
-          <span [class.tbtc-title]="themeService.getCurrentTheme() === Theme.TBTC">Transactions</span>
-        </div>
-        <button type="button" class="btn btn-primary btn-sm text-white" [routerLink]="(themeService.getCurrentTheme() === Theme.KEEP) ? '/keep/transactions' : '/tbtc/transactions'">View All Transactions</button>
+  <div class="card-header d-flex justify-content-between flex-wrap">
+    <div class="h4 d-flex justify-content-center align-items-center m-0">
+      <app-transaction-icon class="mr-2"></app-transaction-icon>
+      <span [class.tbtc-title]="themeService.getCurrentTheme() === Theme.TBTC">Transactions</span>
     </div>
+    <button type="button" class="btn btn-primary btn-sm text-white"
+      [routerLink]="(themeService.getCurrentTheme() === Theme.KEEP) ? '/keep/transactions' : '/tbtc/transactions'">View
+      All Transactions</button>
+  </div>
+  <ng-container *ngIf="transfers$ | async as transfers; else loading">
     <div class="card-body p-0">
-        <ul class="list-group">
-            <li
-                class="list-group-item border-0"
-                [class.pb-0]="i !== 4"
-                *ngFor="let transfer of transfers$ | async | slice: 0:5; let i = index"
-            >
-                <app-transaction-item [transfer]="transfer"></app-transaction-item>
-            </li>
-        </ul>
+      <ul class="list-group">
+        <li class="list-group-item border-0" [class.pb-0]="i !== 4"
+          *ngFor="let transfer of transfers | slice: 0:5; let i = index">
+          <app-transaction-item [transfer]="transfer"></app-transaction-item>
+        </li>
+      </ul>
     </div>
+  </ng-container>
+  <ng-template #loading>
+    <app-loading></app-loading>
+  </ng-template>
 </div>
