@@ -21,6 +21,7 @@ export class GrantViewModel {
     public timestamp: number;
     public readyToReleaseExclusiveStaked: string;
     public readyToRelease: string;
+    public transactionHash: string;
 
     constructor(grant: IGrant) {
         this.id = grant.id;
@@ -38,6 +39,7 @@ export class GrantViewModel {
         this.availableToStake = 0;
         this.staked = grant.staked;
         this.stakingPolicy = grant.stakingPolicy;
+        this.transactionHash = grant.transactionHash;
         this.timestamp = grant.timestamp;
         this.readyToReleaseExclusiveStaked = Utils.toFixed(this.calcultateUnlockedAmount()).toString();
         this.readyToRelease = Utils.toFixed(Number(this.readyToReleaseExclusiveStaked) - this.staked).toString();

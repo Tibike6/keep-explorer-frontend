@@ -17,6 +17,7 @@ export const GRANTS_QUERY = gql`
             withdrawn
             staked
             stakingPolicy
+            transactionHash
             timestamp
         }
     }
@@ -39,6 +40,7 @@ export const GRANT_QUERY = gql`
             withdrawn
             staked
             stakingPolicy
+            transactionHash
             timestamp
         }
     }

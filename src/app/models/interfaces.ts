@@ -62,6 +62,7 @@ export interface IGrant {
     withdrawn: number;
     staked: number;
     stakingPolicy: string;
+    transactionHash: string;
     timestamp: number;
 }
 
