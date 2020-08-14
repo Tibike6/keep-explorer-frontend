@@ -32,6 +32,7 @@ import { GrantItemComponent } from './grant/grant-item/grant-item.component';
 import { GrantListComponent } from './grant/grant-list/grant-list.component';
 import { BlockDetailComponent } from './block/block-detail/block-detail.component';
 import { TokenHolderPageComponent } from './token-holder/token-holder-page/token-holder-page.component';
+import { EtherscanRedirectComponent } from './shared/etherscan-redirect/etherscan-redirect.component';
 
 @NgModule({
     declarations: [
@@ -54,7 +55,8 @@ import { TokenHolderPageComponent } from './token-holder/token-holder-page/token
         KeepLogoComponent,
         GrantItemComponent,
         GrantListComponent,
-        TokenHolderPageComponent
+        TokenHolderPageComponent,
+        EtherscanRedirectComponent
     ],
     imports: [
         BrowserModule,

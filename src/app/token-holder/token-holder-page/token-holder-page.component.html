@@ -54,7 +54,9 @@
           <ng-container *ngIf="tokenHolders$ | async as tokenHolders; else loading">
             <ng-container *ngFor="let tokenHolder of tokenHolders; index as i">
               <tr>
-                <td class="text-truncate" scope="row"><a class="text-primary">{{ checkAddress(tokenHolder.id) }}</a>
+                <td class="text-truncate" scope="row">
+                  <a class="text-primary">{{ checkAddress(tokenHolder.id) }}</a>
+                  <app-etherscan-redirect type="address" [value]="tokenHolder.id" class="ml-2"></app-etherscan-redirect>
                 </td>
                 <td *ngIf="themeService.getCurrentTheme() === Theme.TBTC">
                   {{ Utils.printQuantity(tokenHolder.tokenBalance) }}<strong> tBTC</strong></td>

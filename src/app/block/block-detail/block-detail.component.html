@@ -15,6 +15,7 @@
               </div>
               <div class="col-md-9">
                 <span>{{ block.number }}</span>
+                <app-etherscan-redirect type="block" [value]="block.number" class="ml-2"></app-etherscan-redirect>
               </div>
             </div>
             <hr class="hr-space" />
@@ -33,6 +34,7 @@
               </div>
               <div class="col-md-9">
                 <span>{{ block.author }}</span>
+                <app-etherscan-redirect type="address" [value]="block.author" class="ml-2"></app-etherscan-redirect>
               </div>
             </div>
             <hr class="hr-space" />
@@ -44,6 +46,7 @@
                 <li *ngFor="let transaction of block.transactions; let i = index;">
                   <div class="text-truncate">
                     <a [routerLink]="['/' + themeService.getCurrentTheme() +'/transactions', transaction.hash]"> {{ transaction.hash }}</a>
+                    <app-etherscan-redirect type="tx" [value]="transaction.hash" class="ml-2"></app-etherscan-redirect>
                   </div>
                   <hr *ngIf="i < block?.transactions?.length - 1" class="my-1" />
                 </li>

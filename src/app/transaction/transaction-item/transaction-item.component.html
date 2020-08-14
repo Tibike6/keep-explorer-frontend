@@ -9,32 +9,42 @@
     <div class="d-flex flex-column col-md-8 col-lg-9">
       <div class="text-truncate">
         <span [class.font-weight-bold]="themeService.getCurrentTheme() === Theme.TBTC">Txn Hash: </span>
-        <a class="text-primary" [routerLink]="['/' + themeService.getCurrentTheme() +'/transactions', transfer.transactionhash]">{{ transfer.transactionhash }}</a>
+        <a class="text-primary"
+          [routerLink]="['/' + themeService.getCurrentTheme() +'/transactions', transfer.transactionhash]">{{ transfer.transactionhash }}</a>
+        <app-etherscan-redirect type="tx" [value]="transfer.transactionhash" class="ml-2"></app-etherscan-redirect>
       </div>
       <span class="d-none d-md-block">
         <a class="text-primary text-truncate">{{ transfer.from }}</a>
+        <app-etherscan-redirect type="address" [value]="transfer.from" class="ml-1"></app-etherscan-redirect>
         <i class="fa fa-arrow-right icon-xs mx-2"
           [ngClass]="themeService.getCurrentTheme() === Theme.TBTC ? 'text-primary' : 'text-secondary'"
           aria-hidden="true"></i>
         <a class="text-primary text-truncate">{{ transfer.to }}</a>
+        <app-etherscan-redirect type="address" [value]="transfer.to" class="ml-1"></app-etherscan-redirect>
       </span>
       <span class="d-block d-md-none">
         <div class="text-truncate">
           <span [class.font-weight-bold]="themeService.getCurrentTheme() === Theme.TBTC">From:</span>
           <a class="text-primary">{{ transfer.from }}</a>
+          <app-etherscan-redirect type="address" [value]="transfer.from" class="ml-1"></app-etherscan-redirect>
         </div>
         <div class="text-truncate">
           <span [class.font-weight-bold]="themeService.getCurrentTheme() === Theme.TBTC">To:</span>
           <a class="text-primary">{{ transfer.to }}</a>
+          <app-etherscan-redirect type="address" [value]="transfer.to" class="ml-1"></app-etherscan-redirect>
         </div>
       </span>
       <span>{{ Utils.printQuantity(transfer.value) }}
         <strong>{{ themeService.getCurrentTheme() === Theme.TBTC ? 'tBTC' : 'KEEP'}}</strong></span>
     </div>
     <div class="d-flex flex-md-column justify-content-md-center align-items-center col-md-3 col-lg-2">
-      <a class="text-primary" [routerLink]="['/' + themeService.getCurrentTheme() +'/blocks', transfer.blockHash]"><span
-          [class.font-weight-bold]="themeService.getCurrentTheme() === Theme.TBTC">Block</span>
-        #{{ transfer.blockNumber }}</a>
+      <div>
+        <a class="text-primary"
+          [routerLink]="['/' + themeService.getCurrentTheme() +'/blocks', transfer.blockHash]"><span
+            [class.font-weight-bold]="themeService.getCurrentTheme() === Theme.TBTC">Block</span>
+          #{{ transfer.blockNumber }}</a>
+        <app-etherscan-redirect type="block" [value]="transfer.blockNumber" class="ml-1"></app-etherscan-redirect>
+      </div>
       <span class="ml-2 ml-md-0"
         [ngClass]="themeService.getCurrentTheme() === Theme.TBTC ? 'text-primary font-weight-bold' : 'text-secondary'">{{ Utils.getTimeAgo(transfer.timestamp) }}</span>
     </div>
