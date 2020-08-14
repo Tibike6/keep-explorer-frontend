@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
@@ -6,7 +6,7 @@ import { DataService } from '../../services/data.service';
 import { QueryRef } from 'apollo-angular';
 import { GrantViewModel } from '../../models/grant.viewmodel';
 import { Utils } from 'src/app/utils';
-import { Label, MultiDataSet, PluginServiceGlobalRegistrationAndOptions, ThemeService } from 'ng2-charts';
+import { Label, PluginServiceGlobalRegistrationAndOptions, ThemeService } from 'ng2-charts';
 import { ChartOptions } from 'chart.js';
 
 export enum GrantTableSortingType {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { QueryRef } from 'apollo-angular';
 import { ThemeService } from '../../services/theme.service';
@@ -9,6 +9,8 @@ import { map, tap } from 'rxjs/operators';
 import { Utils } from '../../utils';
 import { Label } from 'ng2-charts';
 import { ChartOptions } from 'chart.js';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { BaseChartDirective } from 'ng2-charts';
 import * as Chart from 'chart.js';
 
 @Component({
@@ -17,6 +19,7 @@ import * as Chart from 'chart.js';
     styleUrls: ['./token-holder-page.component.scss']
 })
 export class TokenHolderPageComponent implements OnInit {
+    @ViewChild(BaseChartDirective) public chart: BaseChartDirective;
     public tokenHolders$: Observable<any>;
     public tokenHoldersQuery: QueryRef<any>;
     public currentPage = 1;
@@ -26,8 +29,9 @@ export class TokenHolderPageComponent implements OnInit {
     public Utils = Utils;
     public doughnutChartLabels: Label[] = [];
     public doughnutChartData = [];
+    public showLegend = window.innerWidth <= 991 ? false : true;
     public options: ChartOptions = {
-        legend: { position: 'left' },
+        legend: { position: 'left', display: this.showLegend },
         tooltips: {
             callbacks: {
                 label(tooltipItem, chart) {
@@ -65,9 +69,16 @@ export class TokenHolderPageComponent implements OnInit {
         }
     ];
 
-    constructor(private dataService: DataService, public themeService: ThemeService) {}
+    private matcher: MediaQueryList;
+    private listener: any;
+
+    constructor(private dataService: DataService, private mediaMatcher: MediaMatcher, public themeService: ThemeService) {}
 
     ngOnInit(): void {
+        this.matcher = this.mediaMatcher.matchMedia('(max-width: 991px)');
+        // tslint:disable-next-line: deprecation
+        this.listener = () => this.myListener(event);
+        this.matcher.addEventListener('change', this.listener);
         // Chart.defaults.global.legend.display = false;
         // tslint:disable-next-line: no-string-literal
         window['switchStyle'](this.themeService.getCurrentTheme());
@@ -84,6 +95,11 @@ export class TokenHolderPageComponent implements OnInit {
                 }
             })
         );
+    }
+
+    public myListener(event) {
+        this.showLegend = window.innerWidth <= 991 ? false : true;
+        this.chart.chart.options.legend.display = this.showLegend;
     }
 
     public fetchMore() {
@@ -103,23 +119,23 @@ export class TokenHolderPageComponent implements OnInit {
 
     public checkAddress(value: string): string {
         if (value === '0x175989c71fd023d580c65f5dc214002687ff88b7') {
-            return (value += ' (Token Grant)');
+            return (value = ' Token Grant');
         } else if (value === '0x68eb4de507c6802d73904a18fb228c7dc2981200') {
-            return (value += ' (Stakedrop Escrow)');
+            return (value = ' Stakedrop Escrow');
         } else if (value === '0x6950c4c7e97c7d2e6b5bffec4634f841db2a5f3d') {
-            return (value += ' (MultiSig)');
+            return (value = ' MultiSig');
         } else if (value === '0x75e89d5979e4f6fba9f97c104c2f0afb3f1dcb88') {
-            return (value += ' (MXC)');
+            return (value = ' MXC');
         } else if (value === '0x0211f3cedbef3143223d3acf0e589747933e8527') {
-            return (value += ' (MXC2)');
+            return (value = ' MXC2');
         } else if (value === '0xcce8d59affdd93be338fc77fa0a298c2cb65da59') {
-            return (value += ' (Bilaxy 2)');
+            return (value = ' Bilaxy 2');
         } else if (value === '0xb38b0c480a451db976837a1a464af95bb0f3f5e2') {
-            return (value += ' (Balancer: KEEP/ETH 80/20 #4)');
+            return (value = ' Balancer: KEEP/ETH 80/20 #4');
         } else if (value === '0xe6f19dab7d43317344282f803f8e8d240708174a') {
-            return (value += ' (Uniswap V2: KEEP 3)');
+            return (value = ' Uniswap V2: KEEP 3');
         } else if (value === '0x944644ea989ec64c2ab9ef341d383cef586a5777') {
-            return (value += ' (LoopringDEX: Beta 1)');
+            return (value = ' LoopringDEX: Beta 1');
         }
 
         return value;

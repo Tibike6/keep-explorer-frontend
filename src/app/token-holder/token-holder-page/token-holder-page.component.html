@@ -29,7 +29,7 @@
           [ngClass]="themeService.getCurrentTheme() === Theme.KEEP ? 'bg-secondary ' : 'bg-primary'">
           <tr>
             <th class="border-secondary" scope="col" (click)="sortBy('id')">
-              Address
+              {{ (showLegend)? 'Address' : 'Token Holders'}}
             </th>
             <th class="border-secondary" scope="col" (click)="sortBy('amount')">
               Quantity
@@ -55,22 +55,29 @@
             <ng-container *ngFor="let tokenHolder of tokenHolders; index as i">
               <tr>
                 <td class="text-truncate" scope="row">
-                  <a class="text-primary">{{ checkAddress(tokenHolder.id) }}</a>
+                  <a class="text-primary text-truncate">{{ checkAddress(tokenHolder.id) }}</a>
                   <app-etherscan-redirect type="address" [value]="tokenHolder.id" class="ml-2"></app-etherscan-redirect>
                 </td>
                 <td *ngIf="themeService.getCurrentTheme() === Theme.TBTC">
+                  <strong *ngIf="!showLegend">Quantity:</strong>
                   {{ Utils.printQuantity(tokenHolder.tokenBalance) }}<strong> tBTC</strong></td>
                 <td *ngIf="themeService.getCurrentTheme() === Theme.KEEP">
+                  <strong *ngIf="!showLegend">Quantity:</strong>
                   {{ Math.round(Utils.printQuantity(tokenHolder.tokenBalance)).toLocaleString('en-US') }}
                   <strong>KEEP</strong>
                 </td>
                 <td *ngIf="themeService.getCurrentTheme() === Theme.TBTC">
+                  <strong *ngIf="!showLegend">Percentage:</strong>
                   {{ Math.round((tokenHolder.tokenBalance / 15000000000000000 * 100) * 10000) / 10000 }}%
                 </td>
                 <td *ngIf="themeService.getCurrentTheme() === Theme.KEEP">
+                  <strong *ngIf="!showLegend">Percentage:</strong>
                   {{ Math.round((tokenHolder.tokenBalance / 1000000000000000000000000000 * 100) * 10000) / 10000 }}%
                 </td>
-                <td>{{ tokenHolder.transfersCount }}</td>
+                <td>
+                  <strong *ngIf="!showLegend">Token Transfers:</strong>
+                  {{ tokenHolder.transfersCount }}
+                </td>
               </tr>
             </ng-container>
           </ng-container>

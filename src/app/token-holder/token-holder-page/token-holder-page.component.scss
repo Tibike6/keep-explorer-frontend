@@ -1,43 +1,58 @@
 :host {
-  display: block;
-  width: 100%;
+    display: block;
+    width: 100%;
 
-  .table {
-    font-size: 14px;
-  }
+    .table {
+        font-size: 14px;
+    }
 
-  .table > tbody > tr:nth-child(2n + 1) > td,
-  .table > tbody > tr:nth-child(2n + 1) > th {
-      background-color: #efefef;
-  }
+    .table > tbody > tr:nth-child(2n + 1) > td,
+    .table > tbody > tr:nth-child(2n + 1) > th {
+        background-color: #efefef;
+    }
 
-  .table td,
-  .table th {
-      text-align: center;
-      svg {
-          color: #48dbb4;
-      }
-      svg.revoked {
-        color: #af0000;
-      }
-      svg.sort {
-        color: #fff;
-      }
-  }
+    .table td,
+    .table th {
+        text-align: center;
+        svg {
+            color: #48dbb4;
+        }
+        svg.revoked {
+            color: #af0000;
+        }
+        svg.sort {
+            color: #fff;
+        }
+    }
 
-  .table tr {
-      cursor: pointer;
-  }
+    .table tr {
+        cursor: pointer;
+    }
 
-  .border {
-      border-width: 2px !important;
-  }
+    .border {
+        border-width: 2px !important;
+    }
 
-  @media (max-width: 768px) {
-      .table td,
-      .table th {
-          padding: 6px;
-          font-size: 12px;
-      }
-  }
+    @media (max-width: 768px) {
+        .table td,
+        .table th {
+            font-size: 12px;
+        }
+    }
+
+    @media (max-width: 992px) {
+        thead th:not(:first-child) {
+            display: none;
+        }
+
+        td,
+        th {
+            display: block;
+            padding: 6px;
+        }
+
+        td[data-th]:before {
+            content: attr(data-th);
+        }
+    }
 }
