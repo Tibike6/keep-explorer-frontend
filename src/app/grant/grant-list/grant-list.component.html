@@ -140,7 +140,7 @@
             <th scope="row">{{ grant.id }}</th>
             <td>{{ Math.round(Utils.printQuantity(grant.amount)).toLocaleString('en-US') }} <strong>KEEP</strong></td>
             <td>{{ Utils.getDateOnly(grant.timestamp) }}</td>
-            <td>{{ Utils.getDateOnly(grant.start) }}</td>
+            <td>{{ Utils.getDateOnly(grant.start * 1 + grant.duration * 1) }}</td>
             <td class="d-none d-md-table-cell">
               <svg *ngIf="grant.staked > 0" width="24" height="24" viewBox="0 0 16 16" class="bi bi-check-circle-fill"
                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
