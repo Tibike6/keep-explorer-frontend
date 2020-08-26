@@ -41,4 +41,6 @@
     </form>
   </div>
 </nav>
+<span *ngIf="themeService.getCurrentTheme() === Theme.TBTC">🧙‍♂</span>
+<app-hidden-page *ngIf="themeService.getCurrentTheme() === Theme.TBTC"></app-hidden-page>
 <router-outlet></router-outlet>
