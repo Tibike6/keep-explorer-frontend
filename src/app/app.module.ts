@@ -33,7 +33,8 @@ import { GrantListComponent } from './grant/grant-list/grant-list.component';
 import { BlockDetailComponent } from './block/block-detail/block-detail.component';
 import { TokenHolderPageComponent } from './token-holder/token-holder-page/token-holder-page.component';
 import { EtherscanRedirectComponent } from './shared/etherscan-redirect/etherscan-redirect.component';
-import { HiddenPageComponent } from './hidden/hidden-page.component';
+import { TopStakerComponent } from './staking/top-staker/top-staker.component';
+import { StakingPageComponent } from './staking/staking-page/staking-page.component';
 
 @NgModule({
     declarations: [
@@ -58,7 +59,8 @@ import { HiddenPageComponent } from './hidden/hidden-page.component';
         GrantListComponent,
         TokenHolderPageComponent,
         EtherscanRedirectComponent,
-        HiddenPageComponent
+        StakingPageComponent,
+        TopStakerComponent
     ],
     imports: [
         BrowserModule,

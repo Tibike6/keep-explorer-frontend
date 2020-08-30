@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Apollo, QueryRef } from 'apollo-angular';
 import { map } from 'rxjs/operators';
-import { ITransfer, ITransferAggregation, ITransaction, IBlock, IGrant, ITokenHolder } from '../models/interfaces';
+import { ITransfer, ITransferAggregation, ITransaction, IBlock, IGrant, ITokenHolder, IStake } from '../models/interfaces';
 import { TRANSFERS_QUERY, MONTHLY_TRANSFERS_QUERY, DAILY_TRANSFERS_QUERY } from '../queries/transfers.query';
 import { TRANSACTION_QUERY } from '../queries/transaction.query';
 import { BLOCKS_QUERY, BLOCK_QUERY } from '../queries/blocks.query';
 import { GRANTS_QUERY } from '../queries/grants.query';
 import { TOKENHOLDERS_QUERY } from '../queries/token-holders.query';
+import { STAKES_QUERY } from '../queries/stakes.query';
 
 type Response = {
     transfers: ITransfer[] | null;
@@ -17,6 +18,7 @@ type Response = {
     block: IBlock | null;
     grants: IGrant | null;
     tokenHolders: ITokenHolder[] | null;
+    stakes: IStake[] | null;
 };
 
 @Injectable({
@@ -43,6 +45,14 @@ export class DataService {
     public getTokenHoldersQueryRef(clientName: string = 'keep', page: number = 1, pageSize: number = 25): QueryRef<Response> {
         return this.apollo.use(clientName).watchQuery<Response>({
             query: TOKENHOLDERS_QUERY,
+            variables: { pageSize, skip: pageSize * (page - 1) },
+            fetchPolicy: 'network-only'
+        });
+    }
+
+    public getStakesQueryRef(clientName: string = 'keep', page: number = 1, pageSize: number = 25): QueryRef<Response> {
+        return this.apollo.use(clientName).watchQuery<Response>({
+            query: STAKES_QUERY,
             variables: { pageSize, skip: pageSize * (page - 1) },
             fetchPolicy: 'network-only'
         });

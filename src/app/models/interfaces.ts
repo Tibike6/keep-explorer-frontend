@@ -72,6 +72,28 @@ export interface ITokenHolder {
     transfersCount: number;
 }
 
+export enum StakeStatus {
+    Staked = 1,
+    Undelegated = 2,
+    Recovered = 3,
+    Slashed = 4,
+    Seized = 5,
+    Locked = 6,
+    LockReleased = 7
+}
+
+export interface IStake {
+    id: string;
+    amount: number;
+    status: StakeStatus;
+    timestamp: number;
+    lockedUntil: number;
+    undelegatedAt: number;
+    recoveredAt: number;
+    lockCreator: string;
+    transactionHash: string;
+}
+
 export enum Theme {
     KEEP = 'keep',
     TBTC = 'tbtc'
